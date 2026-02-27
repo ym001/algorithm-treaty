@@ -172,8 +172,14 @@ def kruskal_eds(n: int, edges: list,
     norm = _normalize(edges)
     m    = len(norm)
 
-    if m == 0:
-        return MSTResult([], 0.0, n, n, "EDS", 0.0, 0, 0)
+    #if m == 0:
+    #    return MSTResult([], 0.0, n, n, "EDS", 0.0, 0, 0)
+    # --- CORRECTIF : Gestion du seuil de rentabilité ---
+    # Pour m < 200, le coût de l'échantillonnage et du partitionnement (O(m log k))
+    # est supérieur au gain d'un tri partiel.
+    if m < 200:
+        return kruskal_standard(n, edges)
+    # --------------------------------------------------
 
     t0  = time.perf_counter()
     rng = random.Random(seed)
@@ -186,10 +192,12 @@ def kruskal_eds(n: int, edges: list,
     sample      = rng.sample(norm, min(sample_size, len(norm)))
     sw          = sorted(e.weight for e in sample)
 
-    # Nombre de strates optimal : sqrt(m / log m)
+    # -- Phase 1 (suite) : Quantification de la mesure invariante --
+    # On cherche le nombre de strates optimal (k) pour partitionner 
+    # l'espace des poids selon l'estimation de Birkhoff/Avila.
     if k is None:
         k = max(1, int(math.sqrt(m / max(1, math.log(m + 1)))))
-
+    
     # Quantiles estimes sur l'echantillon
     boundaries: list = []
     for i in range(1, k):
@@ -199,6 +207,8 @@ def kruskal_eds(n: int, edges: list,
     k_actual   = len(boundaries) + 1
 
     # -- Phase 2 : Partition en strates -- O(m) -----------------------
+    # Utilisation d'une structure de type 'buckets' (liste de listes)
+    # pour stocker les arêtes partitionnées selon les quantiles.
     strata: list = [[] for _ in range(k_actual)]
     for e in norm:
         idx = bisect.bisect_right(boundaries, e.weight)
@@ -214,6 +224,12 @@ def kruskal_eds(n: int, edges: list,
     for stratum in strata:
         if not stratum:
             continue
+        # --- MODIFICATION : Ajout d'une condition d'arrêt ---
+        # Si le graphe est déjà "saturé" (plus d'arêtes utiles possibles), 
+        # on peut arrêter même si len(mst) < n - 1.
+        if uf.n_components <= 1:
+            break
+        # ----------------------------------------------------
         strata_used += 1
         stratum.sort()
         ops_sort += len(stratum)
