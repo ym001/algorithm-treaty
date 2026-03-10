@@ -1,23 +1,18 @@
 /*
- * benchmark_v4.c — BFS 5-way benchmark
+ * BFS_AA.c — BFS 5-way benchmark
  * Algorithmes : STD · DIR · SURF · BB · AA (PHP-BFS v1)
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * AA — PHP-BFS 
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * Inspiration : puzzles de Yoccoz (dynamique complexe, 1990-2006).
- * Dans un puzzle de Yoccoz de profondeur k, l'espace est partitionné en
- * pièces P^k(c) qui s'imbriquent et s'effondrent progressivement.
- * On exploite ici cette même idée de "collapse hiérarchique" pour éviter
- * de scanner les zones mortes du graphe.
  *
  * ── Structure fondamentale ───────────────────────────────────────────────────
  *
  *   n sommets divisés en Nb = ⌈n/B⌉ pièces de taille B (B = AA_BLOCK = 512).
  *   Chaque pièce p couvre les sommets [p·B, (p+1)·B).
  *
- *   Deux bitvecteurs imbriqués (« tableau de Yoccoz ») :
+ *   Deux bitvecteurs imbriqués :
  *     frontier_fine [W   mots] : frontière exacte au niveau sommet
  *     active_pieces [Wc  mots] : bit p = 1 ssi pièce p a encore des
  *                                 non-visités (piece_uv[p] > 0)
