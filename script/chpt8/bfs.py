@@ -438,7 +438,6 @@ def demo() -> None:
         print(f"  Partition A = {sorted(A)}")
         print(f"  Partition B = {sorted(B)}")
 
-
 if __name__ == "__main__":
     _run_tests()
     demo()
