@@ -1,0 +1,701 @@
+=================================================================================================
+SYNTHETIC BENCHMARKS
+=================================================================================================
+
+Graph                  Algorithm         Time(ms)   Expanded  Generated    AvgCost  Subopt  Solved
+-------------------------------------------------------------------------------------------------
+
+### Grid 500x500 — 20% obstacles, weights in [1,3]
+    n=250000  m=319318
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=1116.5 (S=16)
+Grid-20pct             A*                  18.075      95512     113906     699.26  1.0000      24
+Grid-20pct             WA*(1.5)            11.759      79576      98140     699.52  1.0004      24
+Grid-20pct             WA*(2.0)             6.181      64073      80447     704.07  1.0070      24
+Grid-20pct             BiA*                 2.606      27613      33473     699.76  1.0011      24
+Grid-20pct             TB-A*               11.057      95512     113906     699.26  1.0000      24
+Grid-20pct             KP-A*               17.002      95512     113906     699.26  1.0000      24
+Grid-20pct             BiKP-A*              4.723      35621      42095     699.26  1.0000      24
+Grid-20pct             ORC-BiKP             0.444       2251       3479     699.26  1.0000      24
+Grid-20pct             ORC-WBiKP            0.080        402        777     703.00  1.0061      24 ★
+
+### Grid 500x500 — 40% obstacles, weights in [1,5]
+    n=250000  m=179406
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=4065.3 (S=16)
+Grid-40pct             A*                   1.796      30439      32766    1700.19  1.0000       8
+Grid-40pct             WA*(1.5)             1.751      29662      32255    1700.19  1.0000       8
+Grid-40pct             WA*(2.0)             1.903      28803      31633    1700.62  1.0002       8
+Grid-40pct             BiA*                 0.385       5870       6356    1700.31  1.0001       8
+Grid-40pct             TB-A*                1.792      30439      32766    1700.19  1.0000       8
+Grid-40pct             KP-A*                1.173      23196      24230    1700.19  1.0000       8
+Grid-40pct             BiKP-A*              0.026        237        351    1700.19  1.0000       8 ★
+Grid-40pct             ORC-BiKP             0.148        528        659    1700.19  1.0000       8
+Grid-40pct             ORC-WBiKP            0.052        377        494    1700.68  1.0003       8
+
+### Large Grid 1000x500 — 25% obstacles, weights in [1,2]
+    n=500000  m=562650
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=1642.4 (S=16)
+LargeGrid-1Mx0.25      A*                  13.151     136985     165237     841.97  1.0000      23
+LargeGrid-1Mx0.25      WA*(1.5)            10.468     103304     127297     844.34  1.0027      23
+LargeGrid-1Mx0.25      WA*(2.0)             6.982      66322      81269     885.92  1.0510      23
+LargeGrid-1Mx0.25      BiA*                 5.182      47408      58116     842.46  1.0017      23
+LargeGrid-1Mx0.25      TB-A*               13.281     136984     165236     841.97  1.0000      23
+LargeGrid-1Mx0.25      KP-A*                5.482      71325      76251     841.97  1.0000      23
+LargeGrid-1Mx0.25      BiKP-A*              0.675       4636       6535     841.98  1.0000      23 ★
+LargeGrid-1Mx0.25      ORC-BiKP             1.207       7013       9491     841.98  1.0000      23
+LargeGrid-1Mx0.25      ORC-WBiKP            0.707       4458       6060     852.69  1.0140      23
+
+### Maze 500x500 — binary-tree maze, unit weights
+    n=250000  m=249999
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=1276.2 (S=16)
+Maze-500x500           A*                   3.809      74879      75127     876.85  1.0000      40
+Maze-500x500           WA*(1.5)             1.521      39325      39564     876.85  1.0000      40
+Maze-500x500           WA*(2.0)             1.655      47433      47681     876.85  1.0000      40
+Maze-500x500           BiA*                 2.390      47190      47381     876.85  1.0000      40
+Maze-500x500           TB-A*                3.936      74769      75017     876.85  1.0000      40
+Maze-500x500           KP-A*                0.694      19125      19357     876.85  1.0000      40
+Maze-500x500           BiKP-A*              0.363       6002       6353     876.85  1.0000      40 ★
+Maze-500x500           ORC-BiKP             0.637       6586       6924     876.85  1.0000      40
+Maze-500x500           ORC-WBiKP            0.435       5631       5987     876.85  1.0000      40
+
+### Erdos-Renyi  n=4000  p=0.008  weights in [1,10]
+    n=4000  m=64267
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=2891.3 (S=16)
+ER-4k-p0.008           A*                   0.398        867       7894    2386.80  1.0000      40
+ER-4k-p0.008           WA*(1.5)             0.301        590       6853    2393.18  1.0027      40
+ER-4k-p0.008           WA*(2.0)             0.252        464       6199    2438.01  1.0206      40
+ER-4k-p0.008           BiA*                 0.022         30        928    2479.99  1.0375      40 ★
+ER-4k-p0.008           TB-A*                0.403        867       7894    2386.80  1.0000      40
+ER-4k-p0.008           KP-A*                0.236        248       4023    2386.80  1.0000      40
+ER-4k-p0.008           BiKP-A*              0.177         97       2656    2386.80  1.0000      40
+ER-4k-p0.008           ORC-BiKP             0.269         98       2724    2386.80  1.0000      40
+ER-4k-p0.008           ORC-WBiKP            0.198        100       2778    2386.80  1.0000      40
+
+### Road kNN  n=5000  k=4  (avg_deg~4, planar-ish)
+    n=5000  m=20000  avg_deg=8.0
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=1272.1 (S=16)
+Road-kNN-5k            A*                   0.101         51       4188     992.09  1.0000      40
+Road-kNN-5k            WA*(1.5)             0.114         78       4500     992.10  1.0000      40
+Road-kNN-5k            WA*(2.0)             0.120        108       4491     992.10  1.0000      40
+Road-kNN-5k            BiA*                 0.023          2        964     996.73  1.0050      40 ★
+Road-kNN-5k            TB-A*                0.107         51       4188     992.09  1.0000      40
+Road-kNN-5k            KP-A*                0.137         35       4267     992.09  1.0000      40
+Road-kNN-5k            BiKP-A*              0.187          5       5219     992.09  1.0000      40
+Road-kNN-5k            ORC-BiKP             0.143          4       4165     992.09  1.0000      40
+Road-kNN-5k            ORC-WBiKP            0.128          4       2288     992.15  1.0001      40
+
+### Road kNN  n=8000  k=5  (denser intersections)
+    n=8000  m=40000  avg_deg=10.0
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=2873.1 (S=16)
+Road-kNN-8k            A*                   0.314       2038       6811    2211.09  1.0000      40
+Road-kNN-8k            WA*(1.5)             0.324       2127       6769    2211.09  1.0000      40
+Road-kNN-8k            WA*(2.0)             0.333       2207       6809    2211.09  1.0000      40
+Road-kNN-8k            BiA*                 0.074          3       2592    2240.99  1.0119      40 ★
+Road-kNN-8k            TB-A*                0.317       2038       6811    2211.09  1.0000      40
+Road-kNN-8k            KP-A*                0.238        839       6553    2211.09  1.0000      40
+Road-kNN-8k            BiKP-A*              0.234         49       6559    2211.09  1.0000      40
+Road-kNN-8k            ORC-BiKP             0.281         25       6405    2211.09  1.0000      40
+Road-kNN-8k            ORC-WBiKP            0.105         22       2784    2216.08  1.0019      40
+
+### Road Planar grid  n~10000  noise=0.6
+    n=10201  m=25142  avg_deg=4.9
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=1101.8 (S=16)
+Road-Planar-10k        A*                   0.101        941       1670     626.18  1.0000      40
+Road-Planar-10k        WA*(1.5)             0.006         64        190     650.67  1.0359      40
+Road-Planar-10k        WA*(2.0)             0.006         63        188     656.89  1.0453      40 ★
+Road-Planar-10k        BiA*                 0.063        543       1008     630.84  1.0092      40
+Road-Planar-10k        TB-A*                0.105        941       1670     626.18  1.0000      40
+Road-Planar-10k        KP-A*                0.037        274        547     626.18  1.0000      40
+Road-Planar-10k        BiKP-A*              0.034        252        556     626.18  1.0000      40
+Road-Planar-10k        ORC-BiKP             0.043        317        670     626.18  1.0000      40
+Road-Planar-10k        ORC-WBiKP            0.014         90        241     637.93  1.0152      40
+
+=================================================================================================
+RECAP — Synthetic graphs  (8 maps)
+=================================================================================================
+
+  -- ALGOS OPTIMAUX  (Subopt = 1.000, chemin garanti le plus court) --
+  Algorithm          Wins-ms  Wins-exp      Avg-ms     Avg-exp  Avg-subopt
+  -------------------------------------------------------------------
+  *BiKP-A*                 6         5       0.802        5862     1.0000
+   ORC-BiKP                1         3       0.397        2103     1.0000
+   A*                      1         0       4.718       42714     1.0000
+   TB-A*                   0         0       3.875       42700     1.0000
+   KP-A*                   0         0       3.125       26319     1.0000
+
+  => Parmi les algorithmes OPTIMAUX, BiKP-A* est le meilleur (6 victoires temps, 5 victoires expansions).
+     5.88x plus rapide que A* (0.802ms vs 4.718ms), 7.3x moins d'expansions (5862 vs 42714).
+     Ces algorithmes trouvent le chemin EXACT garanti (Subopt = 1.0000).
+
+  -- ALGOS SOUS-OPTIMAUX  (Subopt > 1.001, chemin proche mais non garanti optimal) --
+  Algorithm          Wins-ms  Wins-exp      Avg-ms     Avg-exp  Avg-subopt
+  -------------------------------------------------------------------
+  *ORC-WBiKP               4         4       0.215        1386     1.0047
+   BiA*                    3         3       1.343       16082     1.0083
+   WA*(2.0)                1         1       2.179       26184     1.0155
+   WA*(1.5)                0         0       3.281       31841     1.0052
+
+  => Parmi les algorithmes SOUS-OPTIMAUX, ORC-WBiKP est le meilleur (4 victoires temps, 4 victoires expansions).
+     1.85x plus rapide que le meilleur algo optimal (ORC-BiKP, 0.215ms vs 0.397ms).
+     Chemin retourne a 0.47% de l'optimal en moyenne (non garanti exact).
+
+  Wins-ms  : victoires temps dans le groupe (rapide = utile en production)
+  Wins-exp : victoires expansions dans le groupe (peu d'exp = heuristique serree)
+  *        : vainqueur du groupe
+
+=================================================================================================
+MOVINGAI BENCHMARKS  (dir: ../graphs_pour_KP/mapf-map)
+=================================================================================================
+
+Graph                  Algorithm         Time(ms)   Expanded  Generated    AvgCost  Subopt  Solved
+-------------------------------------------------------------------------------------------------
+
+--- Loading: ../graphs_pour_KP/mapf-map/Berlin_1_256.map
+    W=256  H=256   n=65536  m=178164  obstacles=27.5%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.813  (81% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+Berlin_1_256           A*                   0.608       5053       7967     154.82  1.0000      38
+Berlin_1_256           WA*(1.5)             0.139       1243       2538     158.84  1.0218      38 ★
+Berlin_1_256           BiA*                 0.369       3714       6032     155.99  1.0069      38
+Berlin_1_256           TB-A*                0.481       5037       7949     154.82  1.0000      38
+Berlin_1_256           KP-A*                0.148       1271       2289     154.82  1.0000      38
+Berlin_1_256           BiKP-A*              0.148       1292       2361     154.82  1.0000      38
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=291.7 (S=16)
+Berlin_1_256           ORC-BiKP             0.370       1941       3391     154.82  1.0000      38
+Berlin_1_256           ORC-WBiKP            0.131        825       1833     156.73  1.0108      38 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/Boston_0_256.map
+    W=256  H=256   n=65536  m=176321  obstacles=27.1%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.877  (88% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+Boston_0_256           A*                   0.576       5056       7263     181.61  1.0000      40
+Boston_0_256           WA*(1.5)             0.084        724       1720     187.53  1.0301      40 ★
+Boston_0_256           BiA*                 0.447       4694       6974     182.32  1.0032      40
+Boston_0_256           TB-A*                0.447       5037       7251     181.61  1.0000      40
+Boston_0_256           KP-A*                0.246       2138       3704     181.61  1.0000      40
+Boston_0_256           BiKP-A*              0.260       2081       3748     181.61  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=279.2 (S=16)
+Boston_0_256           ORC-BiKP             0.477       2658       4524     181.61  1.0000      40
+Boston_0_256           ORC-WBiKP            0.227       1369       3066     183.46  1.0098      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/Paris_1_256.map
+    W=256  H=256   n=65536  m=174439  obstacles=28.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.849  (85% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+Paris_1_256            A*                   0.415       3678       5608     138.94  1.0000      40
+Paris_1_256            WA*(1.5)             0.126       1117       2400     142.66  1.0260      40 ★
+Paris_1_256            BiA*                 0.317       3453       5211     139.60  1.0062      40
+Paris_1_256            TB-A*                0.330       3653       5571     138.94  1.0000      40
+Paris_1_256            KP-A*                0.138       1137       2123     138.94  1.0000      40
+Paris_1_256            BiKP-A*              0.155       1263       2379     138.94  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=305.3 (S=16)
+Paris_1_256            ORC-BiKP             0.300       1439       2634     138.94  1.0000      40
+Paris_1_256            ORC-WBiKP            0.101        564       1306     139.56  1.0035      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/brc202d.map
+    W=530  H=481   n=254930  m=158122  obstacles=83.1%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.655  (65% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+brc202d                A*                   1.096      12525      16930     388.85  1.0000      40
+brc202d                WA*(1.5)             0.844       8367      15033     395.21  1.0175      40
+brc202d                BiA*                 1.224      14616      20090     390.08  1.0037      40
+brc202d                TB-A*                0.942      12512      16930     388.85  1.0000      40
+brc202d                KP-A*                0.362       3599       6069     388.85  1.0000      40
+brc202d                BiKP-A*              0.238       2262       4124     388.85  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=756.7 (S=16)
+brc202d                ORC-BiKP             0.446       2919       5130     388.85  1.0000      40
+brc202d                ORC-WBiKP            0.099        631       1693     390.53  1.0050      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/den312d.map
+    W=65   H=81    n=5265  m=8277  obstacles=53.6%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.831  (83% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+den312d                A*                   0.031        405        636      47.93  1.0000      40
+den312d                WA*(1.5)             0.020        217        424      48.47  1.0079      40
+den312d                BiA*                 0.039        461        736      48.12  1.0039      40
+den312d                TB-A*                0.031        398        626      47.93  1.0000      40
+den312d                KP-A*                0.012        102        232      47.93  1.0000      40 ★
+den312d                BiKP-A*              0.015        126        291      47.93  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=81.0 (S=16)
+den312d                ORC-BiKP             0.016        133        301      47.93  1.0000      40
+den312d                ORC-WBiKP            0.008         52        160      48.13  1.0053      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/den520d.map
+    W=256  H=257   n=65792  m=107002  obstacles=57.2%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.814  (81% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+den520d                A*                   0.444       4325       6859     148.92  1.0000      40
+den520d                WA*(1.5)             0.184       1808       3578     150.65  1.0072      40
+den520d                BiA*                 0.439       4613       7510     149.50  1.0034      40
+den520d                TB-A*                0.381       4303       6822     148.92  1.0000      40
+den520d                KP-A*                0.132       1162       2200     148.92  1.0000      40
+den520d                BiKP-A*              0.132       1222       2373     148.92  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=307.7 (S=16)
+den520d                ORC-BiKP             0.231       1378       2652     148.92  1.0000      40
+den520d                ORC-WBiKP            0.056        307        836     149.29  1.0021      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/empty-16-16.map
+    W=16   H=16    n=256  m=930  obstacles=0.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.962  (96% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+empty-16-16            A*                   0.001         15         42       8.14  1.0000      40
+empty-16-16            WA*(1.5)             0.001          8         31       8.14  1.0000      40 ★
+empty-16-16            BiA*                 0.001          8         37       8.14  1.0000      40
+empty-16-16            TB-A*                0.001         12         38       8.14  1.0000      40
+empty-16-16            KP-A*                0.002         14         42       8.14  1.0000      40
+empty-16-16            BiKP-A*              0.003         12         49       8.14  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=15.8 (S=16)
+empty-16-16            ORC-BiKP             0.003         13         51       8.14  1.0000      40
+empty-16-16            ORC-WBiKP            0.002          7         32       8.14  1.0000      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/empty-32-32.map
+    W=32   H=32    n=1024  m=3906  obstacles=0.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.958  (96% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+empty-32-32            A*                   0.004         55        128      16.66  1.0000      40
+empty-32-32            WA*(1.5)             0.001         15         60      16.66  1.0000      40 ★
+empty-32-32            BiA*                 0.003         28         88      16.87  1.0078      40
+empty-32-32            TB-A*                0.004         48        116      16.66  1.0000      40
+empty-32-32            KP-A*                0.005         40        106      16.66  1.0000      40
+empty-32-32            BiKP-A*              0.006         33        106      16.66  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=29.2 (S=16)
+empty-32-32            ORC-BiKP             0.007         41        119      16.66  1.0000      40
+empty-32-32            ORC-WBiKP            0.003         15         63      16.66  1.0000      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/empty-48-48.map
+    W=48   H=48    n=2304  m=8930  obstacles=0.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.945  (95% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+empty-48-48            A*                   0.012        143        293      26.49  1.0000      40
+empty-48-48            WA*(1.5)             0.002         23         92      26.49  1.0000      40 ★
+empty-48-48            BiA*                 0.007         79        200      26.84  1.0087      40
+empty-48-48            TB-A*                0.011        133        273      26.49  1.0000      40
+empty-48-48            KP-A*                0.008         73        178      26.49  1.0000      40
+empty-48-48            BiKP-A*              0.013         95        242      26.49  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=50.0 (S=16)
+empty-48-48            ORC-BiKP             0.014        104        253      26.49  1.0000      40
+empty-48-48            ORC-WBiKP            0.005         26        101      26.51  1.0008      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/empty-8-8.map
+    W=8    H=8     n=64  m=210  obstacles=0.0%
+    Scenarios: 16 pairs (random, no .scen)
+    h_euclid/d_real = 0.950  (95% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+empty-8-8              A*                   0.000          8         24       5.05  1.0000      16 ★
+empty-8-8              WA*(1.5)             0.001          5         21       5.05  1.0000      16
+empty-8-8              BiA*                 0.001          4         23       5.05  1.0000      16
+empty-8-8              TB-A*                0.001          6         22       5.05  1.0000      16
+empty-8-8              KP-A*                0.001          8         25       5.05  1.0000      16
+empty-8-8              BiKP-A*              0.002          9         34       5.05  1.0000      16
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=8.1 (S=16)
+empty-8-8              ORC-BiKP             0.002          9         34       5.05  1.0000      16
+empty-8-8              ORC-WBiKP            0.001          4         22       5.05  1.0000      16 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/ht_chantry.map
+    W=162  H=141   n=22842  m=26939  obstacles=67.3%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.707  (71% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+ht_chantry             A*                   0.118       1447       2176      88.44  1.0000      40
+ht_chantry             WA*(1.5)             0.086        909       1686      89.23  1.0083      40
+ht_chantry             BiA*                 0.148       1756       2599      89.11  1.0078      40
+ht_chantry             TB-A*                0.112       1435       2159      88.44  1.0000      40
+ht_chantry             KP-A*                0.040        339        656      88.44  1.0000      40
+ht_chantry             BiKP-A*              0.039        352        703      88.44  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=128.2 (S=16)
+ht_chantry             ORC-BiKP             0.056        437        827      88.44  1.0000      40
+ht_chantry             ORC-WBiKP            0.034        229        521      89.21  1.0086      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/ht_mansion_n.map
+    W=133  H=270   n=35910  m=32141  obstacles=75.1%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.750  (75% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+ht_mansion_n           A*                   0.112       1272       1980      78.91  1.0000      40
+ht_mansion_n           WA*(1.5)             0.054        522       1081      79.78  1.0102      40
+ht_mansion_n           BiA*                 0.106       1165       1835      79.19  1.0036      40
+ht_mansion_n           TB-A*                0.112       1262       1968      78.91  1.0000      40
+ht_mansion_n           KP-A*                0.042        348        686      78.91  1.0000      40
+ht_mansion_n           BiKP-A*              0.039        320        679      78.91  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=188.8 (S=16)
+ht_mansion_n           ORC-BiKP             0.055        399        794      78.91  1.0000      40
+ht_mansion_n           ORC-WBiKP            0.022        122        347      79.34  1.0049      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/lak303d.map
+    W=194  H=194   n=37636  m=52818  obstacles=60.7%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.661  (66% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+lak303d                A*                   0.340       4123       5664     162.66  1.0000      40
+lak303d                WA*(1.5)             0.219       2544       4183     163.94  1.0067      40
+lak303d                BiA*                 0.421       5114       6935     163.27  1.0028      40
+lak303d                TB-A*                0.314       4111       5647     162.66  1.0000      40
+lak303d                KP-A*                0.124       1157       2085     162.66  1.0000      40
+lak303d                BiKP-A*              0.098        870       1687     162.66  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=293.2 (S=16)
+lak303d                ORC-BiKP             0.128        906       1726     162.66  1.0000      40
+lak303d                ORC-WBiKP            0.064        319        858     163.48  1.0036      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/lt_gallowstemplar_n.map
+    W=251  H=180   n=45180  m=36396  obstacles=77.8%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.767  (77% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+lt_gallowstemplar_n    A*                   0.118       1324       1995      90.45  1.0000      40
+lt_gallowstemplar_n    WA*(1.5)             0.052        470       1011      91.67  1.0095      40
+lt_gallowstemplar_n    BiA*                 0.119       1285       1976      91.09  1.0050      40
+lt_gallowstemplar_n    TB-A*                0.106       1311       1976      90.45  1.0000      40
+lt_gallowstemplar_n    KP-A*                0.044        362        709      90.45  1.0000      40
+lt_gallowstemplar_n    BiKP-A*              0.040        331        689      90.45  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=205.9 (S=16)
+lt_gallowstemplar_n    ORC-BiKP             0.066        444        833      90.45  1.0000      40
+lt_gallowstemplar_n    ORC-WBiKP            0.039        218        511      90.77  1.0037      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/maze-128-128-1.map
+    W=128  H=128   n=16384  m=8190  obstacles=50.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.169  (17% quality — BiKP regime ★)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+maze-128-128-1         A*                   0.120       3471       3488     422.80  1.0000      40
+maze-128-128-1         WA*(1.5)             0.099       3099       3117     422.80  1.0000      40
+maze-128-128-1         BiA*                 0.100       2677       2700     422.80  1.0000      40
+maze-128-128-1         TB-A*                0.124       3470       3487     422.80  1.0000      40
+maze-128-128-1         KP-A*                0.036        688        729     422.80  1.0000      40
+maze-128-128-1         BiKP-A*              0.021        595        643     422.80  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=674.0 (S=16)
+maze-128-128-1         ORC-BiKP             0.031        673        722     422.80  1.0000      40
+maze-128-128-1         ORC-WBiKP            0.025        565        615     422.80  1.0000      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/maze-128-128-10.map
+    W=128  H=128   n=16384  m=54579  obstacles=9.6%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.425  (43% quality — BiKP regime ★)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+maze-128-128-10        A*                   0.393       4934       6833     179.08  1.0000      40
+maze-128-128-10        WA*(1.5)             0.362       3937       6763     180.63  1.0076      40
+maze-128-128-10        BiA*                 0.462       5661       7915     180.08  1.0058      40
+maze-128-128-10        TB-A*                0.371       4925       6830     179.08  1.0000      40
+maze-128-128-10        KP-A*                0.132       1244       2218     179.08  1.0000      40
+maze-128-128-10        BiKP-A*              0.112       1016       1851     179.08  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=345.5 (S=16)
+maze-128-128-10        ORC-BiKP             0.135       1046       1889     179.08  1.0000      40
+maze-128-128-10        ORC-WBiKP            0.074        413       1050     180.98  1.0093      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/maze-128-128-2.map
+    W=128  H=128   n=16384  m=26859  obstacles=33.7%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.185  (18% quality — BiKP regime ★)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+maze-128-128-2         A*                   0.270       4732       5430     527.89  1.0000      40
+maze-128-128-2         WA*(1.5)             0.264       4448       5235     528.96  1.0023      40
+maze-128-128-2         BiA*                 0.297       4729       5433     528.05  1.0006      40
+maze-128-128-2         TB-A*                0.271       4731       5430     527.89  1.0000      40
+maze-128-128-2         KP-A*                0.110       1184       1731     527.89  1.0000      40
+maze-128-128-2         BiKP-A*              0.101       1054       1634     527.89  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=899.6 (S=16)
+maze-128-128-2         ORC-BiKP             0.133       1229       1823     527.89  1.0000      40
+maze-128-128-2         ORC-WBiKP            0.091        702       1439     528.45  1.0010      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/maze-32-32-2.map
+    W=32   H=32    n=1024  m=1595  obstacles=35.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.511  (51% quality — BiKP regime ★)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+maze-32-32-2           A*                   0.014        261        318      50.89  1.0000      40
+maze-32-32-2           WA*(1.5)             0.014        235        301      50.93  1.0009      40
+maze-32-32-2           BiA*                 0.016        257        324      50.95  1.0018      40
+maze-32-32-2           TB-A*                0.015        260        318      50.89  1.0000      40
+maze-32-32-2           KP-A*                0.006         74        131      50.89  1.0000      40 ★
+maze-32-32-2           BiKP-A*              0.008         77        144      50.89  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=110.1 (S=16)
+maze-32-32-2           ORC-BiKP             0.007         74        140      50.89  1.0000      40
+maze-32-32-2           ORC-WBiKP            0.006         51        122      50.89  1.0000      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/maze-32-32-4.map
+    W=32   H=32    n=1024  m=2463  obstacles=22.9%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.546  (55% quality — BiKP regime ★)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+maze-32-32-4           A*                   0.015        229        327      37.13  1.0000      40
+maze-32-32-4           WA*(1.5)             0.014        187        311      37.13  1.0000      40
+maze-32-32-4           BiA*                 0.020        271        385      37.26  1.0027      40
+maze-32-32-4           TB-A*                0.015        226        324      37.13  1.0000      40
+maze-32-32-4           KP-A*                0.006         61        131      37.13  1.0000      40 ★
+maze-32-32-4           BiKP-A*              0.008         64        144      37.13  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=74.7 (S=16)
+maze-32-32-4           ORC-BiKP             0.008         67        150      37.13  1.0000      40
+maze-32-32-4           ORC-WBiKP            0.005         37        100      37.13  1.0000      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/orz900d.map
+    W=1491 H=656   n=978096  m=361233  obstacles=90.1%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.492  (49% quality — BiKP regime ★)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+orz900d                A*                   3.395      39090      52606    1123.80  1.0000      40
+orz900d                WA*(1.5)             3.434      33045      56242    1136.02  1.0109      40
+orz900d                BiA*                 4.615      46122      63120    1124.91  1.0009      40
+orz900d                TB-A*                2.996      39066      52636    1123.80  1.0000      40
+orz900d                KP-A*                1.348      12457      20533    1123.80  1.0000      40
+orz900d                BiKP-A*              1.016       7264      13574    1123.80  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=1840.8 (S=16)
+orz900d                ORC-BiKP             1.298       7872      14308    1123.80  1.0000      40
+orz900d                ORC-WBiKP            0.422       1773       4809    1130.69  1.0085      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/ost003d.map
+    W=194  H=194   n=37636  m=48545  obstacles=64.9%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.654  (65% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+ost003d                A*                   0.296       3875       5335     142.46  1.0000      40
+ost003d                WA*(1.5)             0.229       2707       4115     143.62  1.0077      40
+ost003d                BiA*                 0.455       5615       7592     142.83  1.0034      40
+ost003d                TB-A*                0.288       3859       5310     142.46  1.0000      40
+ost003d                KP-A*                0.123       1142       2090     142.46  1.0000      40
+ost003d                BiKP-A*              0.116       1034       1959     142.46  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=287.6 (S=16)
+ost003d                ORC-BiKP             0.145       1074       2035     142.46  1.0000      40
+ost003d                ORC-WBiKP            0.076        435       1074     144.27  1.0081      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/random-32-32-10.map
+    W=32   H=32    n=1024  m=2907  obstacles=10.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.905  (90% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+random-32-32-10        A*                   0.007         82        155      19.11  1.0000      40
+random-32-32-10        WA*(1.5)             0.002         19         59      19.34  1.0106      40 ★
+random-32-32-10        BiA*                 0.005         47        109      19.18  1.0034      40
+random-32-32-10        TB-A*                0.007         79        152      19.11  1.0000      40
+random-32-32-10        KP-A*                0.005         38         93      19.11  1.0000      40
+random-32-32-10        BiKP-A*              0.007         40        108      19.11  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=31.3 (S=16)
+random-32-32-10        ORC-BiKP             0.007         42        110      19.11  1.0000      40
+random-32-32-10        ORC-WBiKP            0.004         22         71      19.12  1.0004      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/random-32-32-20.map
+    W=32   H=32    n=1024  m=2028  obstacles=20.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.858  (86% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+random-32-32-20        A*                   0.006         73        120      19.13  1.0000      40
+random-32-32-20        WA*(1.5)             0.002         24         57      19.42  1.0126      40 ★
+random-32-32-20        BiA*                 0.005         54         99      19.26  1.0062      40
+random-32-32-20        TB-A*                0.006         71        118      19.13  1.0000      40
+random-32-32-20        KP-A*                0.004         32         70      19.13  1.0000      40
+random-32-32-20        BiKP-A*              0.005         30         75      19.13  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=38.6 (S=16)
+random-32-32-20        ORC-BiKP             0.005         33         79      19.13  1.0000      40
+random-32-32-20        ORC-WBiKP            0.003         20         57      19.18  1.0024      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/random-64-64-10.map
+    W=64   H=64    n=4096  m=11751  obstacles=10.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.905  (91% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+random-64-64-10        A*                   0.018        201        351      31.76  1.0000      40
+random-64-64-10        WA*(1.5)             0.004         33        100      32.11  1.0099      40 ★
+random-64-64-10        BiA*                 0.011        112        227      31.99  1.0063      40
+random-64-64-10        TB-A*                0.018        193        339      31.76  1.0000      40
+random-64-64-10        KP-A*                0.009         70        160      31.76  1.0000      40
+random-64-64-10        BiKP-A*              0.013         89        213      31.76  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=66.3 (S=16)
+random-64-64-10        ORC-BiKP             0.014         97        225      31.76  1.0000      40
+random-64-64-10        ORC-WBiKP            0.006         39        118      31.97  1.0050      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/random-64-64-20.map
+    W=64   H=64    n=4096  m=8373  obstacles=20.2%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.861  (86% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+random-64-64-20        A*                   0.028        329        493      39.97  1.0000      40
+random-64-64-20        WA*(1.5)             0.005         52        123      40.80  1.0182      40 ★
+random-64-64-20        BiA*                 0.019        205        332      40.38  1.0107      40
+random-64-64-20        TB-A*                0.028        326        490      39.97  1.0000      40
+random-64-64-20        KP-A*                0.012         99        198      39.97  1.0000      40
+random-64-64-20        BiKP-A*              0.015        112        231      39.97  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=69.1 (S=16)
+random-64-64-20        ORC-BiKP             0.017        133        258      39.97  1.0000      40
+random-64-64-20        ORC-WBiKP            0.010         69        162      40.27  1.0068      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/room-32-32-4.map
+    W=32   H=32    n=1024  m=1476  obstacles=33.4%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.747  (75% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+room-32-32-4           A*                   0.006        100        136      23.77  1.0000      40
+room-32-32-4           WA*(1.5)             0.003         48         82      23.95  1.0068      40 ★
+room-32-32-4           BiA*                 0.005         73        107      24.06  1.0121      40
+room-32-32-4           TB-A*                0.007         99        136      23.77  1.0000      40
+room-32-32-4           KP-A*                0.003         34         66      23.77  1.0000      40
+room-32-32-4           BiKP-A*              0.004         31         70      23.77  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=44.6 (S=16)
+room-32-32-4           ORC-BiKP             0.004         35         74      23.77  1.0000      40
+room-32-32-4           ORC-WBiKP            0.004         26         63      23.77  1.0000      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/room-64-64-16.map
+    W=64   H=64    n=4096  m=13078  obstacles=11.0%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.735  (74% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+room-64-64-16          A*                   0.074        971       1453      66.41  1.0000      40
+room-64-64-16          WA*(1.5)             0.055        605       1126      67.30  1.0157      40
+room-64-64-16          BiA*                 0.108       1261       1896      66.72  1.0052      40
+room-64-64-16          TB-A*                0.074        963       1446      66.41  1.0000      40
+room-64-64-16          KP-A*                0.030        261        523      66.41  1.0000      40
+room-64-64-16          BiKP-A*              0.028        222        482      66.41  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=149.7 (S=16)
+room-64-64-16          ORC-BiKP             0.029        230        488      66.41  1.0000      40
+room-64-64-16          ORC-WBiKP            0.015        103        295      66.47  1.0007      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/room-64-64-8.map
+    W=64   H=64    n=4096  m=10162  obstacles=21.1%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.685  (69% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+room-64-64-8           A*                   0.051        672        936      57.65  1.0000      40
+room-64-64-8           WA*(1.5)             0.031        342        608      58.11  1.0079      40
+room-64-64-8           BiA*                 0.052        642        902      57.93  1.0056      40
+room-64-64-8           TB-A*                0.051        669        937      57.65  1.0000      40
+room-64-64-8           KP-A*                0.024        204        372      57.65  1.0000      40
+room-64-64-8           BiKP-A*              0.017        132        280      57.65  1.0000      40 ★
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=98.9 (S=16)
+room-64-64-8           ORC-BiKP             0.021        157        320      57.65  1.0000      40
+room-64-64-8           ORC-WBiKP            0.015        106        248      57.71  1.0006      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/w_woundedcoast.map
+    W=642  H=578   n=371076  m=123755  obstacles=90.8%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.696  (70% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+w_woundedcoast         A*                   0.723       7536      10642     368.91  1.0000      39
+w_woundedcoast         WA*(1.5)             0.373       3762       7047     373.55  1.0120      39 ★
+w_woundedcoast         BiA*                 0.706       8267      11672     371.24  1.0048      39
+w_woundedcoast         TB-A*                0.595       7522      10625     368.91  1.0000      39
+w_woundedcoast         KP-A*                0.677       7536      10642     368.91  1.0000      39
+w_woundedcoast         BiKP-A*              0.919       9455      12798     368.91  1.0000      39
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=618.8 (S=16)
+w_woundedcoast         ORC-BiKP             0.353       2236       4106     368.91  1.0000      39
+w_woundedcoast         ORC-WBiKP            0.113        715       1826     371.19  1.0061      39 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/warehouse-10-20-10-2-1.map
+    W=161  H=63    n=10143  m=14538  obstacles=43.8%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.914  (91% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+warehouse-10-20-10-2-1 A*                   0.035        567        739      77.08  1.0000      40
+warehouse-10-20-10-2-1 WA*(1.5)             0.004         88        147      77.88  1.0080      40 ★
+warehouse-10-20-10-2-1 BiA*                 0.029        448        594      77.31  1.0050      40
+warehouse-10-20-10-2-1 TB-A*                0.034        551        712      77.08  1.0000      40
+warehouse-10-20-10-2-1 KP-A*                0.019        219        315      77.08  1.0000      40
+warehouse-10-20-10-2-1 BiKP-A*              0.023        313        470      77.08  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=149.6 (S=16)
+warehouse-10-20-10-2-1 ORC-BiKP             0.030        386        560      77.08  1.0000      40
+warehouse-10-20-10-2-1 ORC-WBiKP            0.007         87        158      77.21  1.0010      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/warehouse-10-20-10-2-2.map
+    W=170  H=84    n=14280  m=30756  obstacles=31.5%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.904  (90% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+warehouse-10-20-10-2-2 A*                   0.100       1176       1700      79.11  1.0000      40
+warehouse-10-20-10-2-2 WA*(1.5)             0.008         97        233      80.73  1.0173      40 ★
+warehouse-10-20-10-2-2 BiA*                 0.078        875       1329      79.63  1.0071      40
+warehouse-10-20-10-2-2 TB-A*                0.098       1162       1683      79.11  1.0000      40
+warehouse-10-20-10-2-2 KP-A*                0.045        401        643      79.11  1.0000      40
+warehouse-10-20-10-2-2 BiKP-A*              0.044        450        745      79.11  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=146.5 (S=16)
+warehouse-10-20-10-2-2 ORC-BiKP             0.057        496        816      79.11  1.0000      40
+warehouse-10-20-10-2-2 ORC-WBiKP            0.019        136        308      79.62  1.0054      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/warehouse-20-40-10-2-1.map
+    W=321  H=123   n=39483  m=58678  obstacles=42.8%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.886  (89% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+warehouse-20-40-10-2-1 A*                   0.151       2075       2587     132.91  1.0000      40
+warehouse-20-40-10-2-1 WA*(1.5)             0.011        146        263     134.60  1.0101      40 ★
+warehouse-20-40-10-2-1 BiA*                 0.117       1657       2046     133.42  1.0053      40
+warehouse-20-40-10-2-1 TB-A*                0.137       2040       2530     132.91  1.0000      40
+warehouse-20-40-10-2-1 KP-A*                0.046        605        872     132.91  1.0000      40
+warehouse-20-40-10-2-1 BiKP-A*              0.062        884       1291     132.91  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=285.2 (S=16)
+warehouse-20-40-10-2-1 ORC-BiKP             0.104        957       1386     132.91  1.0000      40
+warehouse-20-40-10-2-1 ORC-WBiKP            0.038        195        372     133.34  1.0017      40 ★
+
+--- Loading: ../graphs_pour_KP/mapf-map/warehouse-20-40-10-2-2.map
+    W=340  H=164   n=55760  m=123126  obstacles=30.5%
+    Scenarios: 40 pairs (random, no .scen)
+    h_euclid/d_real = 0.894  (89% quality — BiA* regime)
+    KP: K=16 landmarks, A=6 active/query (farthest-point/W∞)
+warehouse-20-40-10-2-2 A*                   0.468       4548       6333     163.51  1.0000      40
+warehouse-20-40-10-2-2 WA*(1.5)             0.017        206        482     167.09  1.0178      40 ★
+warehouse-20-40-10-2-2 BiA*                 0.325       3530       4966     164.36  1.0053      40
+warehouse-20-40-10-2-2 TB-A*                0.394       4526       6302     163.51  1.0000      40
+warehouse-20-40-10-2-2 KP-A*                0.123       1206       1898     163.51  1.0000      40
+warehouse-20-40-10-2-2 BiKP-A*              0.164       1677       2600     163.51  1.0000      40
+    ORC-MC: K=16 landmarks (8 MAXCOV + 8 farthest), A=6 active/query, mean_score=294.1 (S=16)
+warehouse-20-40-10-2-2 ORC-BiKP             0.354       2288       3433     163.51  1.0000      40
+warehouse-20-40-10-2-2 ORC-WBiKP            0.065        462        912     165.06  1.0058      40 ★
+
+=================================================================================================
+RECAP — ../graphs_pour_KP/mapf-map  (33 maps)
+=================================================================================================
+
+  -- ALGOS OPTIMAUX  (Subopt = 1.000, chemin garanti le plus court) --
+  Algorithm          Wins-ms  Wins-exp      Avg-ms     Avg-exp  Avg-subopt
+  -------------------------------------------------------------------
+  *KP-A*                  15        15       0.123        1191     1.0000
+   BiKP-A*                14        15       0.117        1055     1.0000
+   TB-A*                   1         2       0.267        3454     1.0000
+   A*                      2         0       0.304        3465     1.0000
+   ORC-BiKP                1         1       0.149         968     1.0000
+
+  => Parmi les algorithmes OPTIMAUX, KP-A* est le meilleur (15 victoires temps, 15 victoires expansions).
+     2.47x plus rapide que A* (0.123ms vs 0.304ms), 2.9x moins d'expansions (1191 vs 3465).
+     Ces algorithmes trouvent le chemin EXACT garanti (Subopt = 1.0000).
+
+  -- ALGOS SOUS-OPTIMAUX  (Subopt > 1.001, chemin proche mais non garanti optimal) --
+  Algorithm          Wins-ms  Wins-exp      Avg-ms     Avg-exp  Avg-subopt
+  -------------------------------------------------------------------
+  *ORC-WBiKP              19        24       0.054         323     1.0037
+   WA*(1.5)               14         8       0.204        2153     1.0097
+   BiA*                    0         1       0.335        3742     1.0047
+
+  => Parmi les algorithmes SOUS-OPTIMAUX, ORC-WBiKP est le meilleur (19 victoires temps, 24 victoires expansions).
+     2.16x plus rapide que le meilleur algo optimal (BiKP-A*, 0.054ms vs 0.117ms).
+     Chemin retourne a 0.37% de l'optimal en moyenne (non garanti exact).
+
+  Wins-ms  : victoires temps dans le groupe (rapide = utile en production)
+  Wins-exp : victoires expansions dans le groupe (peu d'exp = heuristique serree)
+  *        : vainqueur du groupe
+
+CSV -> benchmark_results_v2.csv
+
+LEGEND
+  Expanded  : avg nodes popped from OPEN
+  Generated : avg nodes pushed to OPEN
+  Subopt    : avg_cost / A*_cost (1.0000 = optimal)
+  ★         : fastest wall-clock time (unconditional)
+
+  KP-A*      Kantorovich Potential A* [this work]
+             Preprocessing: K Dijkstra exacts — O(K·n·log n)
+             h_KP(u) = max_i |d(Li,u) − d(Li,dst)|
+
+  BiKP-A*    Bidirectional KP-A* (Goldberg-Harrelson 2005)
+             Consistent pair: prio = g + (h_f − h_b)/2
+             Optimal: Subopt = 1.0000 garanti
