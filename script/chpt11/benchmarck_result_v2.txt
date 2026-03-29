@@ -1,0 +1,405 @@
+./bf_bench_v2   roadNet-PA.txt roadNet-CA.txt roadNet-TX.txt   soc-sign-bitcoinalpha.csv soc-sign-bitcoin-otc.csv   token_transfers_V2.0.0.csv token_transfers_V3.0.0.csv  
+
++================================================================================+
+|  BENCHMARK SSSP -- 7 ALGORITHMES                                              |
+|  BF Classic | SPFA | BF Rand | BF Pot | BF-ADAPT v1 | BF-ADAPT v2           |
+|  + Dijkstra+Johnson [ref hors-concours, graphes sans cycles negatifs]        |
+|  v1: seuil rho(t)=|A|/n (noeuds), tau=1/4 fixe                              |
+|  v2: seuil eps(t)=arcs_A/m (arcs), tau*=m/eta adaptatif en ligne            |
+|  << = meilleur BF | REF = Dijkstra reference | N/A = cycle negatif          |
++================================================================================+
+
+--- [1/6] GRAPHES SYNTHETIQUES CLASSIQUES ---
+
++------------------------------------------------------------------------------------+
+|  Sparse (n=800, m=4000, w>0)                   n=800    m=4000          |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.191   |        2927|         9| non |      |
+| SPFA          [Moore/Duan 94]    | 0.440   |        1968|      1408| non |      |
+| BF Randomise  [Bannister 12]    | 0.166   |        3122|        10| non |      |
+| BF Potentiel  [Cantone 19]       | 0.400   |        1119|       795| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.067   |        1886|      1374| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.054 <<|        1823|       441| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.253   |        1120|       796| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Sparse grand (n=3000, m=15000, w>0)           n=3000   m=15000         |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.295   |       10938|        11| non |      |
+| SPFA          [Moore/Duan 94]    | 0.333   |        8138|      5945| non |      |
+| BF Randomise  [Bannister 12]    | 0.728   |       12317|        13| non |      |
+| BF Potentiel  [Cantone 19]       | 0.533   |        4226|      2980| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.242 <<|        8007|      5828| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.251   |        8962|      2989| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.480   |        4225|      2981| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Grille 25x25 (n=625)                          n=625    m=2400          |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.018   |        1256|         6| non |      |
+| SPFA          [Moore/Duan 94]    | 0.032   |        1270|       961| non |      |
+| BF Randomise  [Bannister 12]    | 0.250   |        3307|        29| non |      |
+| BF Potentiel  [Cantone 19]       | 0.046   |         799|       625| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.015 <<|        1257|       961| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.018   |        1167|       434| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.046   |         800|       626| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Grille 60x60 (n=3600)                         n=3600   m=14160         |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.190   |       14686|        14| non |      |
+| SPFA          [Moore/Duan 94]    | 0.309   |       14615|     11777| non |      |
+| BF Randomise  [Bannister 12]    | 3.035   |       54811|        82| non |      |
+| BF Potentiel  [Cantone 19]       | 0.243   |        4597|      3600| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.232   |       14678|     11777| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.115 <<|       11168|      3410| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.247   |        4590|      3601| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Dense (n=200, m~40000)                        n=200    m=39800         |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.148   |        1240|         5| non |      |
+| SPFA          [Moore/Duan 94]    | 0.200   |        1150|       361| non |      |
+| BF Randomise  [Bannister 12]    | 0.431   |        2183|         5| non |      |
+| BF Potentiel  [Cantone 19]       | 0.184   |         845|       200| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.087   |        1240|        18| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.072 <<|        1240|        96| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.106   |         861|       201| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Poids negatifs (Johnson, sans cycle negatif)  n=800    m=5000          |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.045   |        3029|         6| non |      |
+| SPFA          [Moore/Duan 94]    | 0.041   |        1563|      1121| non |      |
+| BF Randomise  [Bannister 12]    | 0.112   |        2527|         8| non |      |
+| BF Potentiel  [Cantone 19]       | 0.173   |        2622|      1508| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.026 <<|        1604|      1115| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.033   |        1822|       295| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.113   |        3193|       805| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Routier synthetique (4-voisins, n=1500)       n=1500   m=6000          |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.033   |         122|        10| non |      |
+| SPFA          [Moore/Duan 94]    | 0.003   |         112|       107| non |      |
+| BF Randomise  [Bannister 12]    | 0.175   |         180|        14| non |      |
+| BF Potentiel  [Cantone 19]       | 0.004   |         111|       107| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.003   |         113|       107| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.002 <<|         113|       107| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.012   |         113|       108| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Chaine inversee (pire cas BF, n=1500)         n=1500   m=1499          |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 1.182   |        1499|      1499| non |      |
+| SPFA          [Moore/Duan 94]    | 0.018   |        1499|      1500| non |      |
+| BF Randomise  [Bannister 12]    | 4.561   |        1499|       859| non |      |
+| BF Potentiel  [Cantone 19]       | 0.011   |        1499|      1500| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.007 <<|        1499|      1500| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.011   |        1499|       751| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.015   |        1499|      1501| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
+--- [2/6] RESEAUX ROUTIERS REELS (SNAP Stanford) ---
+    Ref: Leskovec & Krevl, SNAP, snap.stanford.edu/data
+    Format: u<TAB>v (non pondere, arcs bidirectionnels charges)
+    Limite: 500000 noeuds max, 650000 arcs max
+    Telecharger: snap.stanford.edu/data/roadNet-CA.txt.gz
+    Usage: ./bf_bench roadNet-CA.txt roadNet-PA.txt roadNet-TX.txt
+
+  -> Chargement roadNet-CA (roadNet-PA.txt)... 497773 noeuds, 649998 arcs
+
++------------------------------------------------------------------------------------+
+|  roadNet-CA                                    n=497773 m=649998        |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 9.976   |       60641|        30| non |      |
+| SPFA          [Moore/Duan 94]    | 0.968   |       11118|     11119| non |      |
+| BF Randomise  [Bannister 12]    |37.385   |       29675|        25| non |      |
+| BF Potentiel  [Cantone 19]       | 1.884   |       11118|     11119| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.581   |       11118|     11119| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.318 <<|       11118|     11119| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 3.433   |       11118|     11120| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
+  -> Chargement roadNet-PA (roadNet-CA.txt)... 472962 noeuds, 649998 arcs
+
++------------------------------------------------------------------------------------+
+|  roadNet-PA                                    n=472962 m=649998        |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |28.621   |      613750|        63| non |      |
+| SPFA          [Moore/Duan 94]    | 5.237   |       52050|     52051| non |      |
+| BF Randomise  [Bannister 12]    |128.157   |      199521|        53| non |      |
+| BF Potentiel  [Cantone 19]       |10.455   |       52050|     52051| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|2.018   |       52050|     52051| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |1.041 <<|       52050|     52051| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 4.725   |       52050|     52052| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
+  -> Chargement roadNet-TX (roadNet-TX.txt)... 449899 noeuds, 649998 arcs
+
++------------------------------------------------------------------------------------+
+|  roadNet-TX                                    n=449899 m=649998        |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |11.616   |       89941|        28| non |      |
+| SPFA          [Moore/Duan 94]    | 1.022   |       12343|     12344| non |      |
+| BF Randomise  [Bannister 12]    |57.309   |       45841|        40| non |      |
+| BF Potentiel  [Cantone 19]       | 1.761   |       12343|     12344| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.610   |       12343|     12344| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.338 <<|       12343|     12344| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 2.612   |       12343|     12345| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
+--- [3/6] RESEAUX FINANCIERS BITCOIN (SNAP Stanford) ---
+    Ref: Kumar et al., Edge Weight Prediction in Weighted Signed
+         Networks, IEEE ICDM 2016. doi:10.1109/ICDM.2016.0075
+    URL Alpha: snap.stanford.edu/data/soc-sign-bitcoin-alpha.html
+    URL OTC  : snap.stanford.edu/data/soc-sign-bitcoin-otc.html
+    Format: source,target,rating,timestamp (rating in [-10,+10])
+    Semantique SSSP: chemin de mefiance minimale entre traders
+    Usage: ./bf_bench soc-sign-bitcoinalpha.csv soc-sign-bitcoin-otc.csv
+
+  -> Chargement Bitcoin Alpha (SNAP) (soc-sign-bitcoinalpha.csv)... 3783 noeuds, 24186 arcs
+
++------------------------------------------------------------------------------------+
+|  Bitcoin Alpha (SNAP)                          n=3783   m=24186         |
+|  Cycles negatifs -- SSSP indefini, divergence attendue                           |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |31.859   |    24553993|      2000| OUI |      |
+| SPFA          [Moore/Duan 94]    | 5.176   |      354737|    151320| OUI |      |
+| BF Randomise  [Bannister 12]    |227.588   |    23059946|      2000| OUI |      |
+| BF Potentiel  [Cantone 19]       | 9.290   |      243629|     60677| OUI |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|5.109   |     2042833|      1340| OUI |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |4.948 <<|     2034781|       215| OUI |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         |61.414   |    38639560|      3782| OUI | N/A  |
++----------------------------------+----------+------------+----------+-----+------+
+
+  -> Chargement Bitcoin OTC (SNAP) (soc-sign-bitcoin-otc.csv)... 5881 noeuds, 35592 arcs
+
++------------------------------------------------------------------------------------+
+|  Bitcoin OTC (SNAP)                            n=5881   m=35592         |
+|  Cycles negatifs -- SSSP indefini, divergence attendue                           |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |62.873   |    30359764|      2000| OUI |      |
+| SPFA          [Moore/Duan 94]    |13.500   |      570770|    235240| OUI |      |
+| BF Randomise  [Bannister 12]    |342.104   |    35408578|      2000| OUI |      |
+| BF Potentiel  [Cantone 19]       |11.812   |      300935|     71747| OUI |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|7.648 <<|     3125334|      1882| OUI |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |8.074   |     3117966|       204| OUI |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         |148.268   |    99681246|      5880| OUI | N/A  |
++----------------------------------+----------+------------+----------+-----+------+
+
+--- [4/6] ERC20 STABLECOINS REEL (SNAP / NeurIPS 2022) ---
+    Ref: Shamsi et al., Chartalist, NeurIPS 2022
+    URL: snap.stanford.edu/data/ERC20-stablecoins.html
+    Format  : block_number,tx_idx,from,to,timestamp,contract,value
+    Tokens  : USDT, USDC, DAI, UST, PAX, WLUNA
+    V2      : blocs 14669683+ (env. 20M lignes)
+    V3      : blocs 14500001+ (env. 70M lignes, inclut crash Luna mai 2022)
+    Methode : top-5000 adresses les plus actives (hubs/baleines/exchanges)
+    Poids   : -round(log10(value)) | ex: 15898 tokens -> w=-4
+    Usage   : ./bf_bench token_transfers_V2.0.0.csv token_transfers_V3.0.0.csv
+
+  -> token_transfers_V2.0.0.csv :      'CSV' sep=',' ex:14669683,7,0xd30b438df65f4f788563b2b3611bd6059bff4ad9,0xda81
+
+  -> token_transfers_V3.0.0.csv :      'CSV' sep=',' ex:14500001,44,0x27cbb0e6885ccb1db2dab7c2314131c94795fbef,0x842
+  [absent: token_transfers_V1.0.0.csv]
+     Passe 1/2: comptage transactions par adresse...
+     token_transfers_V2.0.0.csv : 500000 adresses nouvelles (cumul=500000)
+     token_transfers_V3.0.0.csv : 0 adresses nouvelles (cumul=500000)
+     Total : 500000 adresses uniques
+     Top-5000 selectionnes (seuil: >= 533 transactions)
+     Passe 2/2: chargement des arcs hub-hub...
+     token_transfers_V2.0.0.csv : 649999 arcs hub-hub
+     token_transfers_V3.0.0.csv : 0 arcs hub-hub
+     Sous-graphe final : 5000 noeuds, 649999 arcs
+     Source = noeud 39 (hub, degre sortant = 41069)
+
++------------------------------------------------------------------------------------+
+|  ERC20 Stablecoins top-5000 hubs (V2+V3)       n=5000   m=649999        |
+|  Cycles negatifs -- SSSP indefini, divergence attendue                           |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |4583.459   |   643730919|      2000| OUI |      |
+| SPFA          [Moore/Duan 94]    |1488.438   |      912185|    200000| OUI |      |
+| BF Randomise  [Bannister 12]    |6319.566   |   643335319|      2000| OUI |      |
+| BF Potentiel  [Cantone 19]       |225.633   |      242075|     23739| OUI |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|27.144 <<|     1050397|      9580| OUI |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |54.128   |     1968103|    162492| OUI |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         |1952.970   |   113072813|      4999| OUI | N/A  |
++----------------------------------+----------+------------+----------+-----+------+
+
+--- [5/6] GRAPHES SYNTHETIQUES FINANCIERS (TYPE FOREX) ---
+    Modelisation : reseaux d'arbitrage multi-devises
+    Ref modele   : Bertimas & Lo (1998), Journal of Financial Markets
+    Structure    : hub-and-spoke (majors <-> mineurs),
+                   tranches temporelles (slots)
+    Poids        : -log(taux) * echelle, bases sur taux reels BCE 2024
+    Poids negatif= taux > 1.0 (echange profitable, arbitrage possible)
+    Garantie     : AUCUN cycle negatif (potentiels de Johnson)
+    Source       : noeud USD au slot 0 (hub principal)
+
++------------------------------------------------------------------------------------+
+|  Forex petit (20 devises x 50 slots, n=1000)   n=1000   m=6678          |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.040   |        3152|         6| non |      |
+| SPFA          [Moore/Duan 94]    | 0.090   |        1681|      1580| non |      |
+| BF Randomise  [Bannister 12]    | 0.588   |       10603|        32| non |      |
+| BF Potentiel  [Cantone 19]       | 0.239   |        3583|      1546| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.015 <<|        1592|      1030| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.026   |        1312|       472| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.185   |        5102|      1005| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Forex moyen (35 devises x 100 slots, n=3500)  n=3500   m=22411         |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.116   |       10702|         5| non |      |
+| SPFA          [Moore/Duan 94]    | 0.221   |        4415|      4247| non |      |
+| BF Randomise  [Bannister 12]    | 3.468   |       64455|        54| non |      |
+| BF Potentiel  [Cantone 19]       | 2.060   |       11919|      5546| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.050 <<|        5208|      3653| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.083   |        4428|      1655| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.582   |       15590|      3505| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Forex source centrale (50 devises x 80 slots)  n=4000   m=25028         |
+|  Coherence BF: OK                                       DJ: OK                |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  | 0.115   |        6537|         6| non |      |
+| SPFA          [Moore/Duan 94]    | 0.146   |        3104|      2861| non |      |
+| BF Randomise  [Bannister 12]    | 3.448   |       21755|        30| non |      |
+| BF Potentiel  [Cantone 19]       | 0.409   |        6055|      3464| non |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|0.034 <<|        3242|      2330| non |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |0.061   |        3126|      2264| non |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         | 0.492   |       16519|      2006| non | REF  |
++----------------------------------+----------+------------+----------+-----+------+
+
+--- [6/6] GRAPHES SYNTHETIQUES CRYPTO (TYPE RESEAU DE CONFIANCE) ---
+    Modelisation : reseau de confiance/mefiance entre traders
+    Inspire de   : Bitcoin Alpha / OTC (SNAP), Kumar et al. 2016
+    Structure    : power-law (quelques hubs tres connectes)
+    Poids        : in [-10, +10] (negatif=mefiance, positif=confiance)
+    Cycles neg.  : POSSIBLES (mefiances mutuelles en boucle)
+    Cas typique  : propagation de reputation / detection de fraude
+
++------------------------------------------------------------------------------------+
+|  Crypto trust (n=2000, m=12000, ~25%% arcs neg)  n=2000   m=12060         |
+|  Cycles negatifs -- SSSP indefini, divergence attendue                           |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |20.651   |    10181447|      1999| OUI |      |
+| SPFA          [Moore/Duan 94]    | 3.660 <<|      154999|     80000| OUI |      |
+| BF Randomise  [Bannister 12]    |112.089   |     9522832|      1999| OUI |      |
+| BF Potentiel  [Cantone 19]       | 5.940   |      176248|     32442| OUI |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|4.751   |     1658468|      6886| OUI |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |4.446   |     1646655|       581| OUI |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         |17.626   |     9862463|      1999| OUI | N/A  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Crypto trust large (n=3500, m=22000, power-law)  n=3500   m=22105         |
+|  Cycles negatifs -- SSSP indefini, divergence attendue                           |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |95.446   |    17876352|      2000| OUI |      |
+| SPFA          [Moore/Duan 94]    | 7.903   |      277626|    140000| OUI |      |
+| BF Randomise  [Bannister 12]    |201.066   |    17506712|      2000| OUI |      |
+| BF Potentiel  [Cantone 19]       | 7.819 <<|      213852|     35804| OUI |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|14.168   |     4672161|      3265| OUI |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |13.247   |     4666620|       830| OUI |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         |57.215   |    32570675|      3499| OUI | N/A  |
++----------------------------------+----------+------------+----------+-----+------+
+
++------------------------------------------------------------------------------------+
+|  Crypto trust XL (n=5000, m=35000)             n=5000   m=35150         |
+|  Cycles negatifs -- SSSP indefini, divergence attendue                           |
++----------------------------------+----------+------------+----------+-----+------+
+| Algorithme                       |Temps(ms) |Relaxations |Iters     | Neg | Ref  |
++----------------------------------+----------+------------+----------+-----+------+
+| BF Classique  [Bellman-Ford 58]  |137.022   |    28996065|      2000| OUI |      |
+| SPFA          [Moore/Duan 94]    |13.116   |      420827|    200000| OUI |      |
+| BF Randomise  [Bannister 12]    |324.267   |    27872521|      2000| OUI |      |
+| BF Potentiel  [Cantone 19]       |10.893 <<|      250156|     37656| OUI |      |
+| BF-ADAPT v1   [rho=|A|/n,tau=1/4]|30.894   |    10739336|     13064| OUI |      |
+| BF-ADAPT v2   [eps=arcs/m,eta*]  |29.375   |    10712000|      1112| OUI |      |
++----------------------------------+----------+------------+----------+-----+------+
+| Dijkstra+J    [DJ 59/77]         |125.247   |    74867519|      4999| OUI | N/A  |
++----------------------------------+----------+------------+----------+-----+------+
+
+Benchmark termine.
+
