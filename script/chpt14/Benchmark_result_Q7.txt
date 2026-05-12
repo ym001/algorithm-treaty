@@ -1,0 +1,43 @@
+./viterbi 2>&1 | grep -A 40 "Q7 — ELLIPTIC"
+
+║  Q7 — ELLIPTIC BITCOIN DATASET (Weber et al. 2019)            ║
+║  Real fraud detection: 203 769 txs, 49 timesteps              ║
+║  Labeled: 4 545 illicit + 42 019 licit transactions           ║
+║  G2PV without any node features — pure graph geometry         ║
+╚═══════════════════════════════════════════════════════════════╝
+  [Elliptic] Loading dataset...
+  [Elliptic] Parsed 203768 transactions from features CSV
+  [Elliptic] Labels: 4545 illicit  42019 licit  157204 unknown
+  [Elliptic] Labeled subgraph: N=46564 nodes
+  [Elliptic] Labeled subgraph: E=36624 edges
+  [Elliptic] HMM: N=46564  T=49  M=16  fraud_steps=49/49
+  [Elliptic] Dataset loaded successfully.
+  [Q7] Computing graph geometry...
+  [Q7] K_BE = -249972.3763  (negatively curved)
+  [Elliptic] K_BE used = -0.5000 (capped for stability)
+  [Elliptic] KL(illicit||licit) = 0.1519
+  [Elliptic] T*_geom (k=1) ≈ 93281
+  [Elliptic] G2PV mean residual: illicit=2.7028  licit=5.4048  ratio=0.50
+
+  ── Elliptic Bitcoin — Detection Quality ─────────────────────
+  ┌──────────────────────────┬───────────────────┬──────────────┐
+  │ Detector                  │  AUROC (boot±CI)  │  vs Weber GNN│
+  ├──────────────────────────┼───────────────────┼──────────────┤
+  │ DET-A Sparse+κ_BC (post) │ 0.4107 ± 0.0056   │  ref: 0.970  │
+  │ DET-B Static τ_BC (post) │ 0.4107 ± 0.0056   │  ref: 0.970  │
+  │ DET-C G2PV [OURS]         │ 0.5061 ± 0.0047   │  ref: 0.970  │
+  │ DET-D ORC-Viterbi         │ 0.4589 ± 0.0046   │  ref: 0.970  │
+  │=DET-E RFV [Ni2019]        │ 0.4052 ± 0.0054   │  ref: 0.970  │
+  └──────────────────────────┴───────────────────┴──────────────┘
+  Weber GNN (2019): AUROC=0.970 (supervised, 94 features)
+  G2PV: no node features — pure graph geometry only
+
+  KL(illicit||licit) = 0.1519  →  T*_geom ≈ 93281
+  Note: T=49 << T* → Theorem 3 guarantee not active.
+  AUROC above 0.5 demonstrates the geometric signal exists.
+  Larger T (transaction-level sequence) needed for Theorem 3.
+
+╔═══════════════════════════════════════════════════════════════╗
+║  Q6 — G2PV(k) k-HOP COROLLARY VALIDATION                    ║
+║  Corollary 3-khop: T*_geom(k) = T*_geom(1) / k^{4/3}        ║
+║  Corollary 3-sharp: T*_sharp(typical) ≈ 245 (Banking SBM)   ║
