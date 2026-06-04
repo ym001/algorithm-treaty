@@ -1,0 +1,113 @@
+./lcs
+
+─────────────────────────────────────────────────────────────────
+  LCS — Benchmark complet : 11 algorithmes
+  DP · Hirschberg · Hunt-Szymanski · Myers (1986) · BP-LCS · Grabowski (2016)
+  OT-LCS · FG-LCS · RFI · RSK-LCS (proposés) · MR-LCS (2026)
+─────────────────────────────────────────────────────────────────
+
+  [Test 1 : A ⊂ B (k insertions) — 11 algorithmes]
+  d* = k, Myers exact O(d*^2+n)
+
+  cas/taille               LCS    DP(ms)  HIRS(ms)  HUNT(ms)   MYR(ms)    BP(ms)  GRAB(ms)    OT(ms)   OT/ex    FG(ms)   RFI(ms)   RSK(ms)    MR(ms)   MR/ex
+─────────────────────────────────────────────────────────────────
+  A⊂B k=10  m=512        512     4.367     0.746     0.224     0.001     0.019     0.912     0.011  1.0000     0.016     0.011     0.010    11.414  0.9375  OK  [d*=10   d_s=64  ]
+  A⊂B k=20  m=1024      1024     2.738     2.047     0.601     0.001     0.030     2.362     0.014  1.0000     0.017     0.014     0.012    45.594  0.9453  OK  [d*=20   d_s=129 ]
+  A⊂B k=50  m=2048      2048    11.046     8.051     2.285     0.002     0.090     7.906     0.027  1.0000     0.032     0.028     0.023   191.021  0.9077  OK  [d*=50   d_s=259 ]
+  A⊂B k=500 m=4096      4096    38.814    37.161    10.618     0.109     0.375    36.082     0.056  1.0000     0.062     0.061     0.049   904.940  0.7285  OK  [d*=500  d_s=542 ]
+─────────────────────────────────────────────────────────────────
+
+  [Test 2 : ASCII σ=95 aléatoire — 11 algorithmes]
+
+  cas/taille               LCS    DP(ms)  HIRS(ms)  HUNT(ms)   MYR(ms)    BP(ms)  GRAB(ms)    OT(ms)   OT/ex    FG(ms)   RFI(ms)   RSK(ms)    MR(ms)   MR/ex
+─────────────────────────────────────────────────────────────────
+  m=256  n=256              42     0.124     0.116     0.034     0.142     0.008     0.185     0.006  0.6429     0.009     0.025     0.027     1.854  0.8095  OK  [d*=428   d_s=32    DENSE(skip Myr)]
+  m=512  n=512              90     0.588     0.478     0.113     0.558     0.016     0.553     0.010  0.4778     0.011     0.036     0.043     6.112  0.8000  OK  [d*=844   d_s=64    DENSE(skip Myr)]
+  m=1024 n=1024            185     2.140     1.988     0.490     2.226     0.033     2.239     0.022  0.4162     0.024     0.088     0.112    34.352  0.8865  OK  [d*=1678  d_s=128   DENSE(skip Myr)]
+  m=2048 n=2048            368     8.812     7.936     2.049     8.490     0.090     7.687     0.042  0.3560     0.046     0.171     0.230   135.665  0.9076  OK  [d*=3360  d_s=256   DENSE(skip Myr)]
+─────────────────────────────────────────────────────────────────
+
+  [Test 3 : ADN pur σ=4 — 11 algorithmes]
+
+  cas/taille               LCS    DP(ms)  HIRS(ms)  HUNT(ms)   MYR(ms)    BP(ms)  GRAB(ms)    OT(ms)   OT/ex    FG(ms)   RFI(ms)   RSK(ms)    MR(ms)   MR/ex
+─────────────────────────────────────────────────────────────────
+  m=512  n=512             328     0.204     0.156     2.377     0.290     0.018     1.008     0.009  0.4787     0.011     0.046     0.056     6.659  0.9329  OK  [d*=368   d_s=64    DENSE(skip Myr)]
+  m=1024 n=1024            665     0.948     0.618    11.147     1.233     0.039     4.035     0.021  0.5008     0.024     0.111     0.135    14.359  0.9474  OK  [d*=718   d_s=128   DENSE(skip Myr)]
+  m=2048 n=2048           1339     4.258     2.513    50.344     4.511     0.093    15.157     0.041  0.4668     0.045     0.225     0.283    64.827  0.9649  OK  [d*=1418  d_s=256   DENSE(skip Myr)]
+  m=4096 n=4096           2674    18.022    10.187   228.864    16.524     0.334    50.805     0.087  0.4181     0.093     0.471     0.599   201.108  0.9798  OK  [d*=2844  d_s=512   DENSE(skip Myr)]
+─────────────────────────────────────────────────────────────────
+
+  [Test 4 : ADN biaisé 80% A — 11 algorithmes]
+
+  cas/taille               LCS    DP(ms)  HIRS(ms)  HUNT(ms)   MYR(ms)    BP(ms)  GRAB(ms)    OT(ms)   OT/ex    FG(ms)   RFI(ms)   RSK(ms)    MR(ms)   MR/ex
+─────────────────────────────────────────────────────────────────
+  m=512  n=512             224     0.546     0.164     2.029     0.424     0.032     0.787     0.008  0.4955     0.009     0.019     0.026     4.821  0.9955  OK  [d*=576   d_s=64    DENSE(skip Myr)]
+  m=1024 n=1024            415     3.455     0.713     8.492     1.873     0.034     3.041     0.011  0.5036     0.014     0.037     0.049    18.999  0.9928  OK  [d*=1218  d_s=128   DENSE(skip Myr)]
+  m=2048 n=2048            824     5.187     2.924    37.244     6.987     0.104    12.806     0.022  0.4939     0.025     0.070     0.094    58.276  0.9806  OK  [d*=2448  d_s=256   DENSE(skip Myr)]
+  m=4096 n=4096           1713    16.789    10.871   179.139    26.748     0.333    38.922     0.044  0.5102     0.048     0.134     0.191   206.122  0.9877  OK  [d*=4766  d_s=512   DENSE(skip Myr)]
+─────────────────────────────────────────────────────────────────
+
+  [Test 5 : Correction sur exemple classique — 11 algorithmes]
+  A="ABCBDAB"  B="BDCABA"  LCS_exact=4
+
+  cas/taille               LCS    DP(ms)  HIRS(ms)  HUNT(ms)   MYR(ms)    BP(ms)  GRAB(ms)    OT(ms)   OT/ex    FG(ms)   RFI(ms)   RSK(ms)    MR(ms)   MR/ex
+─────────────────────────────────────────────────────────────────
+  ABCBDAB/BDCABA             4     0.000     0.001     0.002     0.000     0.007     0.002     0.001  1.0000     0.002     0.001     0.002     0.004  0.5000  OK
+─────────────────────────────────────────────────────────────────
+
+  Sequences reconstituees :
+  DP Reference   : LCS=4  seq="BDAB"
+  Hirschberg     : LCS=4  seq="BDAB"
+  Hunt-Szymanski : LCS=4  seq="BDAB"
+  Myers exact    : LCS=4
+  BP-LCS (Hyyro) : LCS=4
+  Grabowski 2016 : LCS=4
+  OT-LCS [prop.] : LCS=4  (Lorentz monotone, ratio=1.0000)
+  FG-LCS [prop.] : LCS=4  (Figalli-Gigli W_D, ratio=1.0000)
+  RFI    [prop.] : LCS=4  (Raffinement Figalli, exact D=4)
+  RSK-LCS[prop.] : LCS=4  (certificat Young tableau)
+  MR-LCS [2026]  : LCS=2  (approx, ratio=0.5000)
+  Algos exacts : tous concordent OK
+─────────────────────────────────────────────────────────────────
+
+  [Test 6 : Qualite approximation MR-LCS — 20 tirages par cas]
+
+  cas                           LCS     min     med     max     moy     ratio_moy
+─────────────────────────────────────────────────────────────────
+  ASCII s=95  m=256             42      32      34      39      34.8    0.8286  OK (>=0.80)
+  ADN s=4    m=512              334     310     316     322     316.1   0.9464  OK (>=0.80)
+  A+B k=20   m=512              512     456     472     472     466.4   0.9109  OK (>=0.80)
+  ADN s=4    m=1024             663     622     626     630     626.4   0.9448  OK (>=0.80)
+─────────────────────────────────────────────────────────────────
+
+  RESUME COMPARATIF — 9 algorithmes
+  ──────────────────────────────────────────────────────────────────────────
+  Algorithme         Complexite temps           Espace         Type
+  ──────────────────────────────────────────────────────────────────────────
+  DP classique       O(mn)                      O(mn)          exact
+  Hirschberg (1975)  O(mn)                      O(m+n)         exact + traceback
+  Hunt-Szymanski     O((r+n) log n)             O(r+n)         exact, sparse
+  Myers exact (1986) O(d*^2 + n)                O(d*)          exact, quasi-ident
+  BP-LCS (Hyyro)     O(mn/w)                    O(|S|*n/w)     exact, dense
+  Grabowski  (2016)  O(mn*loglog n / log^2 n)   O(m+n)         exact, 4-Russians
+  OT-LCS     [prop.] O(m+n+tau1*log tau1)       O(m+n)         Lorentz monotone LB
+  FG-LCS     [prop.] O(m+n+tau1*log tau1)       O(m+n)         Figalli-Gigli W_D LB
+  RFI        [prop.] O(D*(m+n+tau1*log tau1))   O(D*(m+n))     exact, Thm RFI
+  RSK-LCS    [prop.] O(m+n+tau1*log tau1)       O(tau1)        Young certif.
+  MR-LCS     (2026)  O(n^2 / 2^{log^O(1) n})   O(n^{0.045})   (1-eps)-approx
+  ──────────────────────────────────────────────────────────────────────────
+  w=64 bits, sigma=alphabet, d*=m+n-2*LCS, r=#{(i,j):A[i]=B[j]}
+
+  References cles :
+  Myers 1986 : Algorithmica 1(2):251-266
+  Grabowski 2016 : Discr. Appl. Math. 212:96-103 (arXiv:1312.2217)
+  Mao & Rubinstein 2026 : STOC 2026 (arXiv:2603.29702)
+  Schensted 1961 : Canad. J. Math. 13:179-191 (LIS via RSK)
+  Figalli-Gigli 2010 : J. Math. Pures Appl. (transport monotone discret)
+  RFI Thm1 : monotonicite L_0<=L_1<=...<=LCS
+  RFI Thm2 : convergence geometrique, E_twist^{(D)} <= E_twist/2^D
+  RSK Thm1 : OT-LCS=lambda1, RSK Thm2 : gap<=lambda2<=E_twist
+  RSK Thm3 : certificat exactitude lambda1=tau1 en O(tau1)
+  O(m+|S|+min(d*^2+n,mn/w)) avec skip Myers si d_W > d_seuil.
+  ──────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────

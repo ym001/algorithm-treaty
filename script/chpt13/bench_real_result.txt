@@ -1,0 +1,147 @@
+======================================================================
+  BENCHMARK LCS -- DONNEES REELLES -- 8 algorithmes
+  DP | Hirschberg | Hunt-Szymanski | Myers | BP | Grabowski | MR-LCS
+======================================================================
+
+>> DOMAINE 1 : PROTEOMIQUE
+
+  Spike SARS-CoV-2 Wuhan vs Omicron BA.1
+  m=1273  n=633
+  ------------------------------------------------------------------
+  LCS=314  sim=49.6%  d*=1278  d_W=676  d_seuil=112  regime=DENSE (skip Myers via Thm1)
+
+    DP classique           : LCS=314          1.991 ms  (x48.31 BP_sub)
+    Hirschberg (1975)      : LCS=314          1.561 ms  (x37.52 BP_sub)
+    Hunt-Szymanski         : LCS=314          2.114 ms  (x70.57 BP_sub)
+    Myers exact (1986)     : LCS=314          1.708 ms  (x36.07 BP_sub)  [O(d*^2+n), d*=1278]
+    BP-LCS (Hyyro)         : LCS=314          0.047 ms  (x1.0 vs BP)  [reference dense]
+    OT-LCS (Lorentz)       : LCS=124          0.015 ms  (x3.1 vs BP_sub)  [Lorentz, ratio=0.3949]
+    FG-LCS (FG2010)        : LCS=124          0.026 ms  (x1.8 vs BP_sub)  [Figalli-Gigli W_D, ratio=0.3949, Thm:FG<=OT]
+    Grabowski (2016)       : LCS=314          2.196 ms  (x84.05 BP_sub)  [O(mn*loglogn/log^2n)]
+    MR-LCS (2026)          : LCS_ref=314       20.290 ms  [sous-seq 1273x633]
+      mediane=276   [276..282]  ratio=0.8790  OK [1-eps,1]
+      d*_sub=1278  d_seuil_sub=112  regime=repli BP
+  ------------------------------------------------------------------
+  BP-LCS (reference complete) : LCS=314  0.047 ms
+
+  BRCA1 sauvage vs BRCA1 mutant c.5266dupC
+  m=1960  n=3418
+  ------------------------------------------------------------------
+  LCS=960  sim=49.0%  d*=3458  d_W=1614  d_seuil=323  regime=DENSE (skip Myers via Thm1)
+
+    DP classique           : LCS=960         10.120 ms  (x60.73 BP_sub)
+    Hirschberg (1975)      : LCS=960          8.914 ms  (x56.44 BP_sub)
+    Hunt-Szymanski         : LCS=960         19.971 ms  (x141.17 BP_sub)
+    Myers exact (1986)     : LCS=960         11.778 ms  (x79.18 BP_sub)  [O(d*^2+n), d*=3458]
+    BP-LCS (Hyyro)         : LCS=960          0.149 ms  (x1.0 vs BP)  [reference dense]
+    OT-LCS (Lorentz)       : LCS=290          0.043 ms  (x3.5 vs BP_sub)  [Lorentz, ratio=0.3021]
+    FG-LCS (FG2010)        : LCS=285          0.045 ms  (x3.3 vs BP_sub)  [Figalli-Gigli W_D, ratio=0.2969, Thm:FG<=OT]
+    Grabowski (2016)       : LCS=960         18.209 ms  (x121.35 BP_sub)  [O(mn*loglogn/log^2n)]
+    MR-LCS (2026)          : LCS_ref=762       94.562 ms  [sous-seq 1960x2048]
+      mediane=714   [698..726]  ratio=0.9370  OK [1-eps,1]
+      d*_sub=2484  d_seuil_sub=250  regime=repli BP
+      [seq complete m=1960 n=3418] d_seuil_full=323
+  ------------------------------------------------------------------
+  BP-LCS (reference complete) : LCS=960  0.149 ms
+
+  TPA_HUMAN vs HLAA_HUMAN (non-homologues)
+  m=137  n=139
+  ------------------------------------------------------------------
+  LCS=53  sim=38.7%  d*=170  d_W=50  d_seuil=17  regime=DENSE (skip Myers via Thm1)
+
+    DP classique           : LCS=53           0.023 ms  (x4.57 BP_sub)
+    Hirschberg (1975)      : LCS=53           0.023 ms  (x4.83 BP_sub)
+    Hunt-Szymanski         : LCS=53           0.042 ms  (x7.07 BP_sub)
+    Myers exact (1986)     : LCS=53           0.038 ms  (x5.17 BP_sub)  [O(d*^2+n), d*=170]
+    BP-LCS (Hyyro)         : LCS=53           0.007 ms  (x1.0 vs BP)  [reference dense]
+    OT-LCS (Lorentz)       : LCS=31           0.003 ms  (x2.3 vs BP_sub)  [Lorentz, ratio=0.5849]
+    FG-LCS (FG2010)        : LCS=31           0.004 ms  (x1.7 vs BP_sub)  [Figalli-Gigli W_D, ratio=0.5849, Thm:FG<=OT]
+    Grabowski (2016)       : LCS=53           0.063 ms  (x12.33 BP_sub)  [O(mn*loglogn/log^2n)]
+    MR-LCS (2026)          : LCS_ref=53         1.103 ms  [sous-seq 137x139]
+      mediane=42    [36..46]  ratio=0.7925  WARN <0.80
+      d*_sub=170  d_seuil_sub=17  regime=repli BP
+  ------------------------------------------------------------------
+  BP-LCS (reference complete) : LCS=53  0.007 ms
+======================================================================
+
+>> DOMAINE 2 : SECURITE CODE (type attaque XZ-Utils 2024)
+  sds.c originale vs backdooree (insertion d*=268 chars)
+
+
+  sds.c original vs backdoore (XZ-style)
+  m=41951  n=42291
+  ------------------------------------------------------------------
+  LCS=41951  sim=100.0%  d*=340  d_W=340  d_seuil=5265  regime=SPARSE (Myers via Thm2)
+
+    DP classique           : LCS=4096        33.454 ms  (x86.48 BP_sub)  [sous-seq 4096x4096]
+    Hirschberg (1975)      : LCS=16384      392.057 ms  (x67.50 BP_sub)  [sous-seq 16384x16384]
+    Hunt-Szymanski         : LCS=8192       305.137 ms  (x197.63 BP_sub)  [sous-seq 8192x8192, sparse si sigma grand]
+    Myers exact (1986)     : LCS=41951        0.160 ms  (x246.1 vs BP_sub)  [O(d*^2+n), d*=340]
+    BP-LCS (Hyyro)         : LCS=41951       39.333 ms  (x1.0 vs BP)  [reference dense]
+    OT-LCS (Lorentz)       : LCS=28136        0.965 ms  (x40.8 vs BP_sub)  [Lorentz, ratio=0.6707]
+    FG-LCS (FG2010)        : LCS=27615        1.248 ms  (x31.5 vs BP_sub)  [Figalli-Gigli W_D, ratio=0.6583, Thm:FG<=OT]
+    Grabowski (2016)       : LCS=8192       132.706 ms  (x97.62 BP_sub)  [sous-seq 8192x8192, ratio=1.000]
+    MR-LCS (2026)          : LCS_ref=2048     114.141 ms  [sous-seq 2048x2048]
+      mediane=2048  [2048..2048]  ratio=1.0000  OK [1-eps,1]
+      d*_sub=0  d_seuil_sub=256  regime=Myers actif
+      [seq complete m=41951 n=42291] d_seuil_full=5265
+  ------------------------------------------------------------------
+  BP-LCS (reference complete) : LCS=41951  39.333 ms
+
+  -- Analyse payload backdoor --
+  delta = |modifie| - LCS = 340 chars inseres
+  LCS/m = 100.0000%  (similarite)
+  Si A sous-seq de B (insertion pure) : LCS=|A|=41951, delta=340=taille payload
+======================================================================
+
+>> DOMAINE 3 : TRADING HFT -- EUR/USD tick data
+  Alphabet sigma=5  {A(up_up) D(down) E(down_down) F(flat) U(up)}
+
+  -- Validation a tailles reduites (tous algos exacts) --
+  taille     DP(ms)   HIRS(ms)   HUNT(ms)    MYR(ms)     BP(ms)     OT(ms)     FG(ms)  LCS     OK?
+  ------------------------------------------------------------------
+  1000        1.805      0.446     37.125      0.003      0.032      0.012      0.019  997     OK
+  2000        3.278      1.803    155.447      0.004      0.091      0.024      0.034  1994    OK
+  4000       15.758      7.247    669.339      0.007      0.316      0.050      0.070  3991    OK
+
+  -- Sequences completes (m=239259, n=239260) --
+
+  HFT EUR/USD session1 vs session2 (completes)
+  m=239259  n=239260
+  ------------------------------------------------------------------
+  LCS=238354  sim=99.6%  d*=1811  d_W=613  d_seuil=29907  regime=SPARSE (Myers via Thm2)
+
+    DP classique           : LCS=4087        14.519 ms  (x41.27 BP_sub)  [sous-seq 4096x4096]
+    Hirschberg (1975)      : LCS=16355      121.438 ms  (x21.62 BP_sub)  [sous-seq 16384x16384]
+    Hunt-Szymanski         : LCS=8179      3470.184 ms  (x2532.67 BP_sub)  [sous-seq 8192x8192, sparse si sigma grand]
+    Myers exact (1986)     : LCS=238354       8.394 ms  (x154.1 vs BP_sub)  [O(d*^2+n), d*=1811]
+    BP-LCS (Hyyro)         : LCS=238354    1293.623 ms  (x1.0 vs BP)  [reference dense]
+    OT-LCS (Lorentz)       : LCS=238333       4.583 ms  (x282.3 vs BP_sub)  [Lorentz, ratio=0.9999]
+    FG-LCS (FG2010)        : LCS=235761       6.183 ms  (x209.2 vs BP_sub)  [Figalli-Gigli W_D, ratio=0.9891, Thm:FG<=OT]
+    Grabowski (2016)       : LCS=8179        71.552 ms  (x50.18 BP_sub)  [sous-seq 8192x8192, ratio=1.000]
+    MR-LCS (2026)          : LCS_ref=2042      55.505 ms  [sous-seq 2048x2048]
+      mediane=2042  [2042..2042]  ratio=1.0000  OK [1-eps,1]
+      d*_sub=12  d_seuil_sub=256  regime=Myers actif
+      [seq complete m=239259 n=239260] d_seuil_full=29907
+  ------------------------------------------------------------------
+  BP-LCS (reference complete) : LCS=238354  1293.623 ms
+
+  Interpretation financiere :
+  LCS/m = 99.62%   d*/m = 0.757%
+  -> Regime ultra-stable. Myers exact optimal (d* faible).
+    Stationnarite validee -> backtest applicable.
+======================================================================
+
+  RESUME COMPARATIF -- DONNEES REELLES (9 algorithmes)
+  ------------------------------------------------------------------
+  Domaine     sigma  d*/m    Thm1(skip)?  Algo exact  MR ratio
+  Proteines    20   ~50%     OUI          BP-LCS      ~0.85-0.93
+  Code source  95   ~1%      NON(Myers)   Myers exact ~0.98-1.00
+  Trading HFT   5   ~0.6%    NON(Myers)   Myers exact ~0.99-1.00
+  ------------------------------------------------------------------
+  OT-LCS Thm1 : T-LCS<=LCS<=tau1 (Figalli couplage monotone)
+  OT-LCS Thm2 : LCS-T-LCS<=E_twist (Figalli regularite)
+  Bug corrige : Hunt-Szymanski tri j DESC pour meme i (overestimation fixee)
+  MR-LCS [Mao-Rubinstein STOC 2026] : premier algo (1-eps)-approx
+    quasi-sous-quadratique. M=4 pratique.
+======================================================================
