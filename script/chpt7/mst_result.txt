@@ -1,0 +1,469 @@
+ cargo run --release
+    Finished `release` profile [optimized] target(s) in 0.00s
+     Running `target/release/mst`
+╔══════════════════════════════════════════════════════════════════════════════════╗
+║            MST Algorithm Suite — Benchmark Comparatif Complet                  ║
+║  Kruskal · Prim · Borůvka · FT · KKT · Chazelle · Filter-Kruskal · Lorentzian ║
+╚══════════════════════════════════════════════════════════════════════════════════╝
+  16 cœurs Rayon | profil: RELEASE ✓
+
+━━━ Test 1  — graphe canonique    (n=9,      m=14) ━━━
+  Algorithme                     Complexité                   Temps (min/3)     vs FK
+  ─────────────────────────────────────────────────────────────────────────────────────
+  Kruskal [Kru56]                                                160.000ns    0.88x ✓
+  Prim [Pri57]                                                   471.000ns    0.30x ✓
+  Borůvka [Bor26]                                                181.000ns    0.77x ✓
+  Fredman-Tarjan [FT87]                                          651.000ns    0.22x ✓
+  KKT [KKT95]                                                    250.000ns    0.56x ✓
+  Chazelle [Cha00]                                                 1.172µs    0.12x ✓
+  Filter-Kruskal [OSS09]                                         140.000ns    1.00x ✓
+  Par-Borůvka [Rayon]                                             34.586µs    0.00x ✓
+  Filter-Borůvka [Rayon]                                          30.668µs    0.00x ✓
+  LGS [BH20+★]                                                   271.000ns    0.52x ✓
+  LGS-Bidir. [BH20+★]                                            280.000ns    0.50x ✓
+  LGS-Hodge [AHK18+BH20★★]                                       220.000ns    0.64x ✓
+  LGS-Q [BH20+★★]                                                261.000ns    0.54x ✓
+
+━━━ Test 2  — sparse              (n=10k,    m=20k) ━━━
+  Algorithme                     Complexité                   Temps (min/3)     vs FK
+  ─────────────────────────────────────────────────────────────────────────────────────
+  Kruskal [Kru56]                                                393.153µs    0.94x ✓
+  Prim [Pri57]                                                     1.168ms    0.32x ✓
+  Borůvka [Bor26]                                                976.741µs    0.38x ✓
+  Fredman-Tarjan [FT87]                                            1.248ms    0.30x ✓
+  KKT [KKT95]                                                    829.880µs    0.45x ✓
+  Chazelle [Cha00]                                                 3.881ms    0.10x ✓
+  Filter-Kruskal [OSS09]                                         370.259µs    1.00x ✓
+  Par-Borůvka [Rayon]                                              2.209ms    0.17x ✓
+  Filter-Borůvka [Rayon]                                           2.282ms    0.16x ✓
+  LGS [BH20+★]                                                   189.282µs    1.96x ✓
+  LGS-Bidir. [BH20+★]                                            155.348µs    2.38x ✓
+  LGS-Hodge [AHK18+BH20★★]                                       172.641µs    2.14x ✓
+  LGS-Q [BH20+★★]                                                171.909µs    2.15x ✓
+
+━━━ Test 3  — dense               (n=2k,     m=40k) ━━━
+  Algorithme                     Complexité                   Temps (min/3)     vs FK
+  ─────────────────────────────────────────────────────────────────────────────────────
+  Kruskal [Kru56]                                                455.753µs    2.49x ✓
+  Prim [Pri57]                                                   700.252µs    1.62x ✓
+  Borůvka [Bor26]                                                857.272µs    1.32x ✓
+  Fredman-Tarjan [FT87]                                            1.021ms    1.11x ✓
+  KKT [KKT95]                                                      1.094ms    1.04x ✓
+  Chazelle [Cha00]                                                 9.812ms    0.12x ✓
+  Filter-Kruskal [OSS09]                                           1.133ms    1.00x ✓
+  Par-Borůvka [Rayon]                                              1.751ms    0.65x ✓
+  Filter-Borůvka [Rayon]                                           1.830ms    0.62x ✓
+  LGS [BH20+★]                                                   129.057µs    8.78x ✓
+  LGS-Bidir. [BH20+★]                                            115.371µs    9.82x ✓
+  LGS-Hodge [AHK18+BH20★★]                                       114.048µs    9.94x ✓
+  LGS-Q [BH20+★★]                                                141.150µs    8.03x ✓
+
+━━━ Test 4  — grand               (n=100k,   m=500k) ━━━
+  Algorithme                     Complexité                   Temps (min/3)     vs FK
+  ─────────────────────────────────────────────────────────────────────────────────────
+  Kruskal [Kru56]                                                  8.249ms    1.01x ✓
+  Prim [Pri57]                                                    43.754ms    0.19x ✓
+  Borůvka [Bor26]                                                 23.346ms    0.36x ✓
+  Fredman-Tarjan [FT87]                                           39.546ms    0.21x ✓
+  KKT [KKT95]                                                     21.534ms    0.39x ✓
+  Chazelle [Cha00]                                               310.908ms    0.03x ✓
+  Filter-Kruskal [OSS09]                                           8.311ms    1.00x ✓
+  Par-Borůvka [Rayon]                                             41.019ms    0.20x ✓
+  Filter-Borůvka [Rayon]                                          42.132ms    0.20x ✓
+  LGS [BH20+★]                                                     5.621ms    1.48x ✓
+  LGS-Bidir. [BH20+★]                                              5.330ms    1.56x ✓
+  LGS-Hodge [AHK18+BH20★★]                                         5.424ms    1.53x ✓
+  LGS-Q [BH20+★★]                                                  5.669ms    1.47x ✓
+
+━━━ Test 5  — très dense          (n=50k,    m=5M) ━━━
+  Algorithme                     Complexité                   Temps (min/3)     vs FK
+  ─────────────────────────────────────────────────────────────────────────────────────
+  Kruskal [Kru56]                                                 72.548ms    1.68x ✓
+  Prim [Pri57]                                                    81.519ms    1.50x ✓
+  Borůvka [Bor26]                                                168.955ms    0.72x ✓
+  Fredman-Tarjan [FT87]                                          138.696ms    0.88x ✓
+  KKT [KKT95]                                                    176.114ms    0.69x ✓
+  Chazelle [Cha00]                                                  2.518s    0.05x ✓
+  Filter-Kruskal [OSS09]                                         121.875ms    1.00x ✓
+  Par-Borůvka [Rayon]                                            266.786ms    0.46x ✓
+  Filter-Borůvka [Rayon]                                         267.792ms    0.46x ✓
+  LGS [BH20+★]                                                    63.297ms    1.93x ✓
+  LGS-Bidir. [BH20+★]                                             80.910ms    1.51x ✓
+  LGS-Hodge [AHK18+BH20★★]                                        34.245ms    3.56x ✓
+  LGS-Q [BH20+★★]                                                 31.568ms    3.86x ✓
+
+━━━ Analyse LGS — Niveau de saturation W* ━━━
+
+  Graphe                                        m  W*_réel     E_lues  compress
+  ────────────────────────────────────────────────────────────────────────────────
+  sparse    (n=1k,  m=3k)                    3000      816       2566     85.6%
+  medium    (n=5k,  m=25k)                  25000      742      18618     74.5%
+  dense     (n=5k,  m=500k)                500000       40      20553      4.1%
+  très dense(n=2k,  m=1M)                 1000000        9       8947      0.9%
+  huge      (n=100k,m=5M)                 5000000      115     580610     11.6%
+
+━━━ Analyse LGS-Lefschetz [AHK18] — Score de Lefschetz et W*_L vs W* ━━━
+
+  Vérification que W*_L ≤ W* et mesure de la fraction d'arêtes MST
+  concentrées dans les premiers 10% de niveaux Lefschetz.
+
+  Graphe                                   m     C_L    W*_L    W*std  MST@10%
+  ───────────────────────────────────────────────────────────────────────────
+  sparse    (n=1k,  m=3k)               3000     786     206      330    54.2%
+  medium    (n=5k,  m=25k)             25000    2586     378      200    87.2%
+  dense     (n=5k,  m=500k)           500000     122       1       11   100.6%
+  très dense(n=2k,  m=1M)            1000000       9       1        3   116.6%
+  huge      (n=100k,m=5M)            5000000    5072      79       20   100.0%
+
+  Interprétation [AHK18] :
+  • C_L = nombre de niveaux Lefschetz distincts (vs C niveaux de poids)
+  • W*_L ≤ W* : le sort Lefschetz concentre les arêtes MST en moins de niveaux
+  • MST@10% : fraction d'arêtes MST dans les 10% premiers niveaux Lefschetz
+    → valeur élevée = le score s_L = w(e)/sqrt(d_u·d_v) prédit le MST
+  • Fondement : s_L ∝ sqrt[Q_β]_{e,e} diagonal de la forme Hodge-Riemann [AHK18]
+    L'unique valeur propre positive de Q_β correspond à la direction MST.
+
+
+━━━ Dynamic MST [HLT01] — démonstration ━━━
+
+  Après 12 insertions : poids MST = 39 (8 arêtes)
+  Après suppression (6,7,1)   : poids MST = 45 (8 arêtes)
+  Après insertion   (0,6,2)   : poids MST = 39 (8 arêtes)
+
+━━━ Récapitulatif théorique — tous algorithmes ━━━
+
+  Algorithme                       Complexité                 Modèle         Réf
+  ──────────────────────────────────────────────────────────────────────────────────────────
+  Kruskal                          O(m log n)                 Séquentiel     [Kru56]
+  Jarník-Prim (bin. heap)          O(m log n)                 Séquentiel     [Pri57]
+  Jarník-Prim (Fib. heap)          O(m + n log n)             Séquentiel     [FT87]
+  Borůvka / Sollin                 O(m log n)                 Paral./Dist.   [Bor26]
+  Yao                              O(m log log n)             Séquentiel     [Yao75]
+  Fredman-Tarjan                   O(m β(m,n))                Séquentiel     [FT87]
+  Gabow et al.                     O(m log log* n)            Séquentiel     [GGST86]
+  KKT                              O(m) esp.                  Randomisé      [KKT95]
+  Chazelle                         O(m α(m,n))                Séquentiel     [Cha00]
+  Pettie-Ramachandran              O(m·opt(m,n)) optimal      Séquentiel     [PR02]
+  Filter-Kruskal                   O(m + n log n·log m/n)     Séquentiel     [OSS09]
+  HLT Dynamic                      O(log² n) ins/del          Dynamique      [HLT01]
+  Par. Borůvka                     Work O(mlogn) Span O(log²n) Multicœur      [Ble+20]
+  Filter-Borůvka                   O(m log n) 800x@64k        MPI            [San23]
+  Batch-incr. MST                  O(ℓ log(1+n/ℓ)) esp.       Parallèle      [ABT20]
+  LGS            [NOUVEAU★]        O(m+C+E_{≤W*}·α(n))        Séquentiel     [BH20+]
+  LGS-Bidir.     [NOUVEAU★]        O(m+C+min(E↑,E↓)·α(n))     Séquentiel     [BH20+]
+  LGS-Q          [NOUVEAU★★]       O(m+k·log k), k=E_{≤W*}    Séquentiel     [BH20+]
+  LGS-Lefschetz  [NOUVEAU★★]       O(m+C_L+E_{≤W*_L}·α(n))    Séquentiel     [AHK18+]
+
+  ── Fondements théoriques — LGS family ──
+  [AHK18]  Adiprasito-Huh-Katz  — Hodge-Riemann pour matroides, Hard Lefschetz
+  [BH20]   Brändén-Huh          — polynômes Lorentziens, Z_M signature (1,r-1)
+
+  CHAÎNE DE CONTRIBUTIONS LGS :
+  LGS          : early stop à W* via gradient Lorentzien g_i=|C_i|/|C_{i-1}|
+                 Complexité O(m+C+E_{≤W*}·α(n)) — sublinéaire si W*<<C
+  LGS-Bidir.   : W*_upper certifié O(C) par accumulation descendante
+                 min(W*_pred, W*_upper) → borne plus serrée sans surcoût
+  LGS-Skip     : déduplication des arêtes redondantes par paires de composantes
+                 G_w = graphe de composantes au niveau w; rank(G_w) ≤ n_comp-1
+                 [BH20 Cor 2.4] → |paires utiles| ≤ n_comp → skip des doublons
+                 Gain maximal sur graphes à poids uniformes (AS-CAIDA, rgg):
+                   s_i arêtes brutes → k_i ≤ n_comp paires → facteur s_i/k_i
+  LGS-Lefschetz: sort bi-clé (w, s_L↓) avec s_L(e)=w(e)/sqrt(d_u·d_v)
+                 s_L ∝ sqrt([Q_β]_{e,e}) — diagonale de la forme Q_β [AHK18 §6]
+                 Résout les égalités de poids selon la structure Hodge-Riemann
+                 Gain sur graphes avec poids peu discriminants (Bitcoin, AS-CAIDA)
+
+  THÉORÈMES [AHK18] + [BH20] exploités :
+  [AHK18 §6] Hard Lefschetz : Q_β sur A^1(M(G)) a signature (1,|E|-1)
+              → [v*]_e ∝ s_L(e) = w(e)/sqrt(d_u·d_v) = direction MST
+  [BH20 Cor 2.4] Log-concavité : rank(G_w) ≤ n_comp-1 ≤ n-1
+              → |paires utiles par niveau| ≤ n-1 → borne sur le skip
+  [BH20 Thm 1.1] Z_M Lorentzien : gradient g_i décroissant
+              → W* = O(log n) en espérance → E_{≤W*} = O(m log n / C)
+
+  PROBLÈMES OUVERTS JACM :
+  1. Prouver k_i = O(sqrt(s_i)) en espérance sur G(n,p) — meilleure
+     borne pour LGS-Skip via les graphes aléatoires de composantes.
+  2. Prouver W*_L = O(W*/log n) sur power-law → LGS-Lefschetz optimal.
+  3. Combiner LGS-Skip + LGS-Bidir : W* certifié + déduplication
+     → O(m + C + Σ_{i≤W*_upper} k_i · α(n)) déterministe.
+  4. T*(m,n) = Theta(m·alpha(m,n)) dans le modèle de comparaison ?
+
+  Questions ouvertes (2026):
+    * k_i = O(sqrt(s_i)) en espérance sur G(n,p) ?
+    * Borne tight W*_L vs W* via la théorie de Lefschetz [AHK18] ?
+    * LGS-Skip + LGS-Lefschetz combinés : gain multiplicatif ?
+    * Extension aux matroides non-graphiques (représentables sur F_q) ?
+    * MST dynamique LGS : maintenir W*, s_L, rank(G_w) sous mises à jour ?
+    
+#########################################
+
+cargo run --release -- --real /home/yves/Nextcloud/book/traité_d_algorithmique/article/graphs/
+    Finished `release` profile [optimized] target(s) in 0.02s
+     Running `target/release/mst --real '/home/yves/Nextcloud/book/traité_d_algorithmique/article/graphs/'`
+╔══════════════════════════════════════════════════════════════════════╗
+║        MST sur Graphes Réels SNAP — Finance & Défense              ║
+╚══════════════════════════════════════════════════════════════════════╝
+  16 cœurs | dossier: /home/yves/Nextcloud/book/traité_d_algorithmique/article/graphs/
+
+
+━━━ FINANCE — Analyse de Risque & Corrélation ━━━
+
+▶ soc-sign-bitcoinalpha.csv — Bitcoin Alpha — réseau de confiance, modèle Mantegna
+  n=    3783  m=     24186  poids=originaux (bitcoin-trust-distance)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   173.432µs       —    ✓
+  Filter-Kruskal            162.882µs     1.00x  ✓
+  LGS                       160.297µs     1.02x  ✓
+  LGS-Bidir.                153.865µs     1.06x  ✓
+  LGS-Hodge ★★              151.300µs     1.08x  ✓
+  LGS-Q ★★                  188.100µs     0.87x  ✓
+  LGS-Lefschetz ★★            3.353ms     0.05x  ✓
+  Borůvka                   414.083µs     0.39x  ✓
+  Par-Borůvka               963.426µs     0.17x  ✓
+  Prim                      414.885µs     0.39x  ✗
+  Chazelle                    2.557ms     0.06x  ✓
+  ── LGS: W*_réel=901, E_lues=24186/24186 (100.0%) ──
+
+▶ soc-sign-bitcoinotc.csv — Bitcoin OTC — trust network, analyse de risque contrepartie
+  n=    5881  m=     35592  poids=originaux (bitcoin-trust-distance)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   235.321µs       —    ✓
+  Filter-Kruskal            245.430µs     1.00x  ✓
+  LGS                       241.754µs     1.02x  ✓
+  LGS-Bidir.                228.688µs     1.07x  ✓
+  LGS-Hodge ★★              233.407µs     1.05x  ✓
+  LGS-Q ★★                  269.486µs     0.91x  ✓
+  LGS-Lefschetz ★★            4.833ms     0.05x  ✓
+  Borůvka                   675.504µs     0.36x  ✓
+  Par-Borůvka                 1.212ms     0.20x  ✓
+  Prim                      743.594µs     0.33x  ✗
+  Chazelle                    3.658ms     0.07x  ✓
+  ── LGS: W*_réel=901, E_lues=35592/35592 (100.0%) ──
+
+▶ soc-Epinions1.txt — Epinions trust — proxy réseau de contreparties financières
+  n=   75879  m=    508837  poids=synthétiques (mantegna-synthetic)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     8.117ms       —    ✓
+  Filter-Kruskal              8.510ms     1.00x  ✓
+  LGS                         5.195ms     1.64x  ✓
+  LGS-Bidir.                  4.861ms     1.75x  ✓
+  LGS-Hodge ★★                4.900ms     1.74x  ✓
+  LGS-Q ★★                    5.253ms     1.62x  ✓
+  LGS-Lefschetz ★★           62.530ms     0.14x  ✓
+  Borůvka                    12.967ms     0.66x  ✓
+  Par-Borůvka                23.740ms     0.36x  ✓
+  Prim                       22.132ms     0.38x  ✗
+  Chazelle                  100.607ms     0.08x  ✓
+  ── LGS: W*_réel=1000, E_lues=508837/508837 (100.0%) ──
+
+▶ CA-CondMat.txt — Condensed Matter — réseau de collaboration (co-authorship)
+  n=   23133  m=    186878  poids=synthétiques (mantegna-synthetic)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     3.009ms       —    ✓
+  Filter-Kruskal              2.830ms     1.00x  ✓
+  LGS                         1.341ms     2.11x  ✓
+  LGS-Bidir.                  1.584ms     1.79x  ✓
+  LGS-Hodge ★★                1.279ms     2.21x  ✓
+  LGS-Q ★★                    3.336ms     0.85x  ✓
+  LGS-Lefschetz ★★           20.381ms     0.14x  ✓
+  Borůvka                     5.553ms     0.51x  ✓
+  Par-Borůvka                 7.436ms     0.38x  ✓
+  Prim                        6.444ms     0.44x  ✗
+  Chazelle                   43.036ms     0.07x  ✓
+  ── LGS: W*_réel=1000, E_lues=186878/186878 (100.0%) ──
+
+━━━ DÉFENSE — Sécurité Réseaux & Infrastructure ━━━
+
+▶ as-caida20071105.txt — AS-CAIDA — graphe BGP Internet, arbre de routage optimal
+  n=   26475  m=    106762  poids=originaux (original)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   931.254µs       —    ✓
+  Filter-Kruskal            793.891µs     1.00x  ✓
+  LGS                       828.879µs     0.96x  ✓
+  LGS-Bidir.                767.520µs     1.03x  ✓
+  LGS-Hodge ★★                1.422ms     0.56x  ✓
+  LGS-Q ★★                  926.195µs     0.86x  ✓
+  LGS-Lefschetz ★★           13.384ms     0.06x  ✓
+  Borůvka                     1.597ms     0.50x  ✓
+  Par-Borůvka                 6.918ms     0.11x  ✓
+  Prim                        2.617ms     0.30x  ✓
+  Chazelle                   19.024ms     0.04x  ✓
+  ── LGS: W*_réel=1, E_lues=106736/106762 (100.0%) ──
+
+▶ p2p-Gnutella04.txt — P2P Gnutella04 — propagation malware/renseignement (petit)
+  n=   10876  m=     39994  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   885.066µs       —    ✓
+  Filter-Kruskal            714.610µs     1.00x  ✓
+  LGS                       367.354µs     1.95x  ✓
+  LGS-Bidir.                329.561µs     2.17x  ✓
+  LGS-Hodge ★★              299.133µs     2.39x  ✓
+  LGS-Q ★★                  361.072µs     1.98x  ✓
+  LGS-Lefschetz ★★            4.448ms     0.16x  ✓
+  Borůvka                     1.417ms     0.50x  ✓
+  Par-Borůvka                 3.965ms     0.18x  ✓
+  Prim                        2.432ms     0.29x  ✓
+  Chazelle                    7.737ms     0.09x  ✓
+  ── LGS: W*_réel=491, E_lues=39988/39994 (100.0%) ──
+
+▶ p2p-Gnutella31.txt — P2P Gnutella31 — propagation large
+  n=   62586  m=    147892  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     3.938ms       —    ✓
+  Filter-Kruskal              2.962ms     1.00x  ✓
+  LGS                         4.901ms     0.60x  ✓
+  LGS-Bidir.                  2.982ms     0.99x  ✓
+  LGS-Hodge ★★                2.066ms     1.43x  ✓
+  LGS-Q ★★                    7.511ms     0.39x  ✓
+  LGS-Lefschetz ★★           15.291ms     0.19x  ✓
+  Borůvka                     7.201ms     0.41x  ✓
+  Par-Borůvka                15.676ms     0.19x  ✓
+  Prim                       12.588ms     0.24x  ✗
+  Chazelle                   37.585ms     0.08x  ✓
+  ── LGS: W*_réel=1582, E_lues=147892/147892 (100.0%) ──
+
+▶ roadNet-TX.txt — Road network Texas — logistique militaire / évacuation
+  n= 1379917  m=   3843320  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   172.249ms       —    ✓
+  Filter-Kruskal            178.520ms     1.00x  ✓
+  LGS                       150.459ms     1.19x  ✓
+  LGS-Bidir.                147.420ms     1.21x  ✓
+  LGS-Hodge ★★              145.111ms     1.23x  ✓
+  LGS-Q ★★                  154.568ms     1.15x  ✓
+  LGS-Lefschetz ★★          351.906ms     0.51x  ✓
+  Borůvka                   255.246ms     0.70x  ✓
+  Par-Borůvka               469.767ms     0.38x  ✓
+  ── LGS: W*_réel=12453, E_lues=3843320/3843320 (100.0%) ──
+
+▶ roadNet-CA.txt — Road network California — infrastructure critique
+  n= 1965206  m=   5533214  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   276.515ms       —    ✓
+  Filter-Kruskal            285.850ms     1.00x  ✓
+  LGS                       248.168ms     1.15x  ✓
+  LGS-Bidir.                237.049ms     1.21x  ✓
+  LGS-Hodge ★★              238.519ms     1.20x  ✓
+  LGS-Q ★★                  244.557ms     1.17x  ✓
+  LGS-Lefschetz ★★          546.010ms     0.52x  ✓
+  Borůvka                   369.258ms     0.77x  ✓
+  Par-Borůvka               685.757ms     0.42x  ✓
+  ── LGS: W*_réel=15765, E_lues=5533214/5533214 (100.0%) ──
+
+▶ web-Google.txt — Web Google — vulnérabilité infrastructure critique (large)
+  n=  875713  m=   5105039  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   158.705ms       —    ✓
+  Filter-Kruskal            163.943ms     1.00x  ✓
+  LGS                       130.077ms     1.26x  ✓
+  LGS-Bidir.                123.987ms     1.32x  ✓
+  LGS-Hodge ★★              129.719ms     1.26x  ✓
+  LGS-Q ★★                  136.382ms     1.20x  ✓
+  LGS-Lefschetz ★★          793.576ms     0.21x  ✓
+  Borůvka                   296.403ms     0.55x  ✓
+  Par-Borůvka               269.906ms     0.61x  ✓
+  ── LGS: W*_réel=9195, E_lues=5105039/5105039 (100.0%) ──
+
+━━━ FINANCE — Analyse de Risque & Corrélation ━━━
+
+▶ Email-Enron.txt — Enron email — détection fraude, analyse comportementale
+  n=   36692  m=    367662  poids=synthétiques (mantegna-synthetic)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     5.488ms       —    ✓
+  Filter-Kruskal              5.938ms     1.00x  ✓
+  LGS                         3.233ms     1.84x  ✓
+  LGS-Bidir.                  3.588ms     1.65x  ✓
+  LGS-Hodge ★★                3.071ms     1.93x  ✓
+  LGS-Q ★★                    3.296ms     1.80x  ✓
+  LGS-Lefschetz ★★           45.072ms     0.13x  ✓
+  Borůvka                     7.936ms     0.75x  ✓
+  Par-Borůvka                12.301ms     0.48x  ✓
+  Prim                       10.871ms     0.55x  ✗
+  Chazelle                   59.353ms     0.10x  ✓
+  ── LGS: W*_réel=1000, E_lues=367662/367662 (100.0%) ──
+
+━━━ DÉFENSE — Sécurité Réseaux & Infrastructure ━━━
+
+▶ facebook_combined.txt — Facebook ego — OSINT, analyse de réseau social
+  n=    4039  m=     88234  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                   984.346µs       —    ✓
+  Filter-Kruskal              1.141ms     1.00x  ✓
+  LGS                       628.956µs     1.81x  ✓
+  LGS-Bidir.                475.501µs     2.40x  ✓
+  LGS-Hodge ★★              467.044µs     2.44x  ✓
+  LGS-Q ★★                  527.721µs     2.16x  ✓
+  LGS-Lefschetz ★★           10.437ms     0.11x  ✓
+  Borůvka                     1.494ms     0.76x  ✓
+  Par-Borůvka                 2.346ms     0.49x  ✓
+  Prim                        2.234ms     0.51x  ✓
+  Chazelle                    8.853ms     0.13x  ✓
+  ── LGS: W*_réel=248, E_lues=85531/88234 (96.9%) ──
+
+▶ Wiki-Vote.txt — Wikipedia vote — analyse d'influence/manipulation
+  n=    7115  m=    103689  poids=synthétiques (powerlaw-C=n)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     1.351ms       —    ✓
+  Filter-Kruskal              1.383ms     1.00x  ✓
+  LGS                       740.759µs     1.87x  ✓
+  LGS-Bidir.                592.546µs     2.33x  ✓
+  LGS-Hodge ★★              589.420µs     2.35x  ✓
+  LGS-Q ★★                  706.654µs     1.96x  ✓
+  LGS-Lefschetz ★★           11.897ms     0.12x  ✓
+  Borůvka                     1.814ms     0.76x  ✓
+  Par-Borůvka                 3.474ms     0.40x  ✓
+  Prim                        1.935ms     0.71x  ✗
+  Chazelle                   12.409ms     0.11x  ✓
+  ── LGS: W*_réel=371, E_lues=103689/103689 (100.0%) ──
+
+▶ rgg_n_2_17_s0.mtx — Random Geometric Graph — déploiement de capteurs/drones
+  n=  131072  m=    728753  poids=originaux (mtx-native)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     5.105ms       —    ✓
+  Filter-Kruskal              5.552ms     1.00x  ✓
+  LGS                         6.203ms     0.89x  ✓
+  LGS-Bidir.                  6.142ms     0.90x  ✓
+  LGS-Hodge ★★                8.522ms     0.65x  ✓
+  LGS-Q ★★                    7.513ms     0.74x  ✓
+  LGS-Lefschetz ★★           64.855ms     0.09x  ✓
+  Borůvka                    11.200ms     0.50x  ✓
+  Par-Borůvka                24.817ms     0.22x  ✓
+  Prim                       12.054ms     0.46x  ✗
+  Chazelle                   90.539ms     0.06x  ✓
+  ── LGS: W*_réel=1, E_lues=728753/728753 (100.0%) ──
+
+▶ delaunay_n17.mtx — Delaunay triangulation — couverture terrain, planification
+  n=  131072  m=    393176  poids=originaux (mtx-native)
+  Algorithme            Temps (min/3)     vs FK  ✓
+  ───────────────────────────────────────────────────────
+  Kruskal                     3.379ms       —    ✓
+  Filter-Kruskal              4.243ms     1.00x  ✓
+  LGS                         4.546ms     0.93x  ✓
+  LGS-Bidir.                  4.275ms     0.99x  ✓
+  LGS-Hodge ★★                4.864ms     0.87x  ✓
+  LGS-Q ★★                    4.532ms     0.94x  ✓
+  LGS-Lefschetz ★★           27.427ms     0.15x  ✓
+  Borůvka                     8.852ms     0.48x  ✓
+  Par-Borůvka                26.440ms     0.16x  ✓
+  Prim                       14.613ms     0.29x  ✓
+  Chazelle                   79.823ms     0.05x  ✓
+  ── LGS: W*_réel=0, E_lues=393161/393176 (100.0%) ──
+
+━━━ Résumé ━━━
+  Graphes chargés : 15/15
+  Graphes manquants : 0
