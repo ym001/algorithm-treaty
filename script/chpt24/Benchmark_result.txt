@@ -1,0 +1,393 @@
+
+### Jeux bien séparés (classiques du clustering) ###
+
+=== Iris — n=150, d=4, K_vrai=3 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=3        ARI= 0.607±0.013 (méd= 0.610) NMI= 0.651      0.1ms (moy.)
+Hiérarchique/Ward        K=3        ARI= 0.615±0.000 (méd= 0.615) NMI= 0.675      0.7ms (moy.)
+BIRCH                    K=3        ARI= 0.645±0.000 (méd= 0.645) NMI= 0.690      0.1ms (moy.)
+Spectral                 K=3        ARI= 0.621±0.000 (méd= 0.621) NMI= 0.643      2.3ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=2        ARI= 0.428±0.000 (méd= 0.428) NMI= 0.500      0.1ms (moy.)
+HDBSCAN                  K=2        ARI= 0.564±0.000 (méd= 0.564) NMI= 0.717      0.5ms (moy.)
+OPTICS                   K=2        ARI= 0.418±0.000 (méd= 0.418) NMI= 0.492      0.4ms (moy.)
+Mean-Shift               K=2        ARI= 0.568±0.000 (méd= 0.568) NMI= 0.734      0.7ms (moy.)
+PoWKM-prescribed         K=6        ARI= 0.365±0.000 (méd= 0.365) NMI= 0.544     72.8ms (moy.)
+DynMSC                   K=2        ARI= 0.568±0.000 (méd= 0.568) NMI= 0.734      0.9ms (moy.)
+DenMune                  K=2        ARI= 0.464±0.000 (méd= 0.464) NMI= 0.550      0.6ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Iris] : Mean-Shift ARI_moy=0.568
+
+=== Wine — n=178, d=13, K_vrai=3 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=3        ARI= 0.897±0.000 (méd= 0.897) NMI= 0.876      0.4ms (moy.)
+Hiérarchique/Ward        K=3        ARI= 0.790±0.000 (méd= 0.790) NMI= 0.786      1.2ms (moy.)
+BIRCH                    K=3        ARI= 0.867±0.000 (méd= 0.867) NMI= 0.848      1.3ms (moy.)
+Spectral                 K=3        ARI= 0.947±0.000 (méd= 0.947) NMI= 0.928      2.5ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=2        ARI= 0.399±0.000 (méd= 0.399) NMI= 0.495      0.2ms (moy.)
+HDBSCAN                  K=2        ARI= 0.269±0.000 (méd= 0.269) NMI= 0.381      0.8ms (moy.)
+OPTICS                   K=2        ARI= 0.398±0.000 (méd= 0.398) NMI= 0.510      0.9ms (moy.)
+Mean-Shift               K=2        ARI=-0.006±0.000 (méd=-0.006) NMI= 0.035      3.6ms (moy.)
+PoWKM-prescribed         K=7        ARI= 0.475±0.000 (méd= 0.475) NMI= 0.618     67.5ms (moy.)
+DynMSC                   K=2        ARI= 0.342±0.118 (méd= 0.373) NMI= 0.442      2.3ms (moy.)
+DenMune                  K=2        ARI= 0.408±0.000 (méd= 0.408) NMI= 0.499      0.9ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Wine] : PoWKM-prescribed ARI_moy=0.475 <-- PoWKM gagne
+
+=== Seeds (blé) — n=210, d=7, K_vrai=3 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=3        ARI= 0.773±0.000 (méd= 0.773) NMI= 0.728      0.3ms (moy.)
+Hiérarchique/Ward        K=3        ARI= 0.797±0.000 (méd= 0.797) NMI= 0.750      2.0ms (moy.)
+BIRCH                    K=3        ARI= 0.765±0.000 (méd= 0.765) NMI= 0.724      0.3ms (moy.)
+Spectral                 K=3        ARI= 0.730±0.000 (méd= 0.730) NMI= 0.704      3.9ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=2        ARI= 0.356±0.000 (méd= 0.356) NMI= 0.436      0.2ms (moy.)
+HDBSCAN                  K=3        ARI= 0.214±0.000 (méd= 0.214) NMI= 0.344      0.9ms (moy.)
+OPTICS                   K=2        ARI= 0.360±0.000 (méd= 0.360) NMI= 0.453      0.8ms (moy.)
+Mean-Shift               K=2        ARI= 0.456±0.000 (méd= 0.456) NMI= 0.533      2.9ms (moy.)
+PoWKM-prescribed         K=2        ARI= 0.434±0.000 (méd= 0.434) NMI= 0.509    153.1ms (moy.)
+DynMSC                   K_méd=2*   ARI= 0.485±0.075 (méd= 0.468) NMI= 0.550      2.0ms (moy.)
+DenMune                  K=3        ARI= 0.618±0.009 (méd= 0.618) NMI= 0.574      1.2ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Seeds (blé)] : DenMune ARI_moy=0.618
+
+=== Breast Cancer — n=569, d=30, K_vrai=2 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=2        ARI= 0.669±0.005 (méd= 0.671) NMI= 0.552      1.9ms (moy.)
+Hiérarchique/Ward        K=2        ARI= 0.575±0.000 (méd= 0.575) NMI= 0.457     35.8ms (moy.)
+BIRCH                    K=2        ARI= 0.648±0.000 (méd= 0.648) NMI= 0.529     32.4ms (moy.)
+Spectral                 K=2        ARI= 0.005±0.001 (méd= 0.005) NMI= 0.009    187.8ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=1        ARI= 0.161±0.000 (méd= 0.161) NMI= 0.097      4.1ms (moy.)
+HDBSCAN                  K=2        ARI= 0.119±0.000 (méd= 0.119) NMI= 0.199     11.2ms (moy.)
+OPTICS                   K=1        ARI= 0.167±0.000 (méd= 0.167) NMI= 0.102     10.1ms (moy.)
+Mean-Shift               K=27       ARI= 0.286±0.000 (méd= 0.286) NMI= 0.276     45.1ms (moy.)
+PoWKM-prescribed         K=4        ARI= 0.587±0.000 (méd= 0.587) NMI= 0.474    758.0ms (moy.)
+DynMSC                   K_méd=2*   ARI= 0.645±0.059 (méd= 0.635) NMI= 0.546     50.2ms (moy.)
+DenMune                  K=4        ARI= 0.002±0.001 (méd= 0.002) NMI= 0.033     11.3ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Breast Cancer] : DynMSC ARI_moy=0.645
+
+### Jeux finance/business ###
+
+=== Balance Scale (psychologie cognitive) — n=625, d=4, K_vrai=3 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=3        ARI= 0.130±0.015 (méd= 0.135) NMI= 0.113      1.0ms (moy.)
+Hiérarchique/Ward        K=3        ARI= 0.122±0.000 (méd= 0.122) NMI= 0.122     39.1ms (moy.)
+BIRCH                    K=3        ARI= 0.145±0.000 (méd= 0.145) NMI= 0.121      2.1ms (moy.)
+Spectral                 K=3        ARI= 0.167±0.104 (méd= 0.170) NMI= 0.147     23.0ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=5        ARI= 0.067±0.000 (méd= 0.067) NMI= 0.074      0.9ms (moy.)
+HDBSCAN                  K=5        ARI= 0.053±0.000 (méd= 0.053) NMI= 0.064      7.1ms (moy.)
+OPTICS                   K=5        ARI= 0.067±0.000 (méd= 0.067) NMI= 0.077      6.4ms (moy.)
+Mean-Shift               K=1        ARI= 0.000±0.000 (méd= 0.000) NMI= 0.000     21.7ms (moy.)
+PoWKM-prescribed         K=13       ARI= 0.092±0.013 (méd= 0.094) NMI= 0.207    414.4ms (moy.)
+DynMSC                   K_méd=12*  ARI= 0.087±0.012 (méd= 0.084) NMI= 0.189      7.1ms (moy.)
+DenMune                  K=1        ARI= 0.003±0.000 (méd= 0.003) NMI= 0.003      8.9ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Balance Scale (psychologie cognitive)] : PoWKM-prescribed ARI_moy=0.092 <-- PoWKM gagne
+
+### Jeux finance/défense (haute dimension ou n plus grand) ###
+
+=== German Credit (finance) — n=300, d=24, K_vrai=2 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=2        ARI= 0.034±0.028 (méd= 0.036) NMI= 0.011      1.0ms (moy.)
+Hiérarchique/Ward        K=2        ARI= 0.017±0.018 (méd= 0.017) NMI= 0.005      5.9ms (moy.)
+BIRCH                    K=2        ARI= 0.017±0.022 (méd= 0.019) NMI= 0.007      5.8ms (moy.)
+Spectral                 K=2        ARI= 0.009±0.029 (méd=-0.000) NMI= 0.009     10.1ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K_méd=2*   ARI= 0.018±0.016 (méd= 0.013) NMI= 0.007      1.0ms (moy.)
+HDBSCAN                  K_méd=2*   ARI= 0.006±0.021 (méd=-0.003) NMI= 0.011      2.9ms (moy.)
+OPTICS                   K_méd=2*   ARI= 0.018±0.016 (méd= 0.014) NMI= 0.007      2.6ms (moy.)
+Mean-Shift               K_méd=9*   ARI= 0.012±0.017 (méd= 0.007) NMI= 0.039      7.3ms (moy.)
+PoWKM-prescribed         K=7        ARI= 0.024±0.012 (méd= 0.018) NMI= 0.038    145.7ms (moy.)
+DynMSC                   K_méd=12*  ARI= 0.001±0.024 (méd= 0.003) NMI= 0.035     11.2ms (moy.)
+DenMune                  K_méd=6*   ARI= 0.014±0.017 (méd= 0.021) NMI= 0.020      3.1ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [German Credit (finance)] : PoWKM-prescribed ARI_moy=0.024 <-- PoWKM gagne
+
+=== Sonar (défense/mines vs. roches) — n=208, d=60, K_vrai=2 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=2        ARI=-0.001±0.001 (méd=-0.002) NMI= 0.011      1.3ms (moy.)
+Hiérarchique/Ward        K=2        ARI=-0.001±0.000 (méd=-0.001) NMI= 0.014      2.4ms (moy.)
+BIRCH                    K=2        ARI=-0.000±0.000 (méd=-0.000) NMI= 0.017      3.3ms (moy.)
+Spectral                 K=2        ARI= 0.009±0.000 (méd= 0.009) NMI= 0.062      8.6ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=1        ARI= 0.001±0.000 (méd= 0.001) NMI= 0.003      1.3ms (moy.)
+HDBSCAN                  K=2        ARI=-0.006±0.000 (méd=-0.006) NMI= 0.025      2.6ms (moy.)
+OPTICS                   K=1        ARI= 0.003±0.000 (méd= 0.003) NMI= 0.004      2.2ms (moy.)
+Mean-Shift               K=17       ARI=-0.003±0.000 (méd=-0.003) NMI= 0.106      8.2ms (moy.)
+PoWKM-prescribed         K=2        ARI= 0.004±0.000 (méd= 0.004) NMI= 0.007     68.1ms (moy.)
+DynMSC                   K_méd=2*   ARI= 0.009±0.013 (méd= 0.006) NMI= 0.037     16.8ms (moy.)
+DenMune                  K=4        ARI=-0.004±0.000 (méd=-0.004) NMI= 0.039      2.2ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Sonar (défense/mines vs. roches)] : DynMSC ARI_moy=0.009
+
+### Jeux biologie (protéines/organismes) ###
+
+=== Ecoli (biologie, localisation protéine) — n=336, d=7, K_vrai=8 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=8        ARI= 0.504±0.012 (méd= 0.501) NMI= 0.634      1.7ms (moy.)
+Hiérarchique/Ward        K=8        ARI= 0.518±0.000 (méd= 0.518) NMI= 0.639      7.2ms (moy.)
+BIRCH                    K=8        ARI= 0.732±0.000 (méd= 0.732) NMI= 0.683      1.1ms (moy.)
+Spectral                 K=8        ARI= 0.407±0.012 (méd= 0.404) NMI= 0.561     54.5ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=3        ARI= 0.455±0.000 (méd= 0.455) NMI= 0.460      0.5ms (moy.)
+HDBSCAN                  K=2        ARI= 0.038±0.000 (méd= 0.038) NMI= 0.118      2.5ms (moy.)
+OPTICS                   K=3        ARI= 0.451±0.000 (méd= 0.451) NMI= 0.456      2.2ms (moy.)
+Mean-Shift               K=6        ARI= 0.454±0.000 (méd= 0.454) NMI= 0.458      5.1ms (moy.)
+PoWKM-prescribed         K=5        ARI= 0.729±0.002 (méd= 0.727) NMI= 0.675    210.8ms (moy.)
+DynMSC                   K_méd=3*   ARI= 0.293±0.277 (méd= 0.239) NMI= 0.317      5.4ms (moy.)
+DenMune                  K=2        ARI= 0.383±0.000 (méd= 0.383) NMI= 0.441      3.1ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Ecoli (biologie, localisation protéine)] : PoWKM-prescribed ARI_moy=0.729 <-- PoWKM gagne
+
+=== Yeast (biologie, localisation subcellulaire) — n=500, d=8, K_vrai=10 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=10       ARI= 0.175±0.016 (méd= 0.177) NMI= 0.314      3.9ms (moy.)
+Hiérarchique/Ward        K=10       ARI= 0.161±0.020 (méd= 0.153) NMI= 0.290     24.2ms (moy.)
+BIRCH                    K=10       ARI= 0.176±0.018 (méd= 0.179) NMI= 0.311      7.7ms (moy.)
+Spectral                 K=10       ARI= 0.063±0.032 (méd= 0.073) NMI= 0.176    419.1ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K_méd=2*   ARI= 0.033±0.018 (méd= 0.026) NMI= 0.056      1.0ms (moy.)
+HDBSCAN                  K_méd=2*   ARI= 0.013±0.012 (méd= 0.014) NMI= 0.064      5.5ms (moy.)
+OPTICS                   K_méd=2*   ARI= 0.033±0.017 (méd= 0.025) NMI= 0.055      4.8ms (moy.)
+Mean-Shift               K_méd=13*  ARI= 0.021±0.014 (méd= 0.023) NMI= 0.120     13.9ms (moy.)
+PoWKM-prescribed         K_méd=6*   ARI= 0.148±0.033 (méd= 0.142) NMI= 0.225    382.6ms (moy.)
+DynMSC                   K_méd=2*   ARI= 0.078±0.065 (méd= 0.083) NMI= 0.140     12.7ms (moy.)
+DenMune                  K_méd=2*   ARI= 0.009±0.011 (méd= 0.009) NMI= 0.027      6.7ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Yeast (biologie, localisation subcellulaire)] : PoWKM-prescribed ARI_moy=0.148 <-- PoWKM gagne
+
+=== Zoo (biologie, taxonomie) — n=101, d=16, K_vrai=7 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=7        ARI= 0.747±0.037 (méd= 0.737) NMI= 0.821      0.3ms (moy.)
+Hiérarchique/Ward        K=7        ARI= 0.680±0.000 (méd= 0.680) NMI= 0.801      0.3ms (moy.)
+BIRCH                    K=7        ARI= 0.925±0.000 (méd= 0.925) NMI= 0.857      0.2ms (moy.)
+Spectral                 K=7        ARI= 0.653±0.044 (méd= 0.656) NMI= 0.733      4.0ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=5        ARI= 0.334±0.000 (méd= 0.334) NMI= 0.582      0.1ms (moy.)
+HDBSCAN                  K=7        ARI= 0.385±0.000 (méd= 0.385) NMI= 0.648      0.3ms (moy.)
+OPTICS                   K=5        ARI= 0.323±0.000 (méd= 0.323) NMI= 0.573      0.2ms (moy.)
+Mean-Shift               K=1        ARI= 0.000±0.000 (méd= 0.000) NMI= 0.000      0.8ms (moy.)
+PoWKM-prescribed         K=3        ARI= 0.713±0.000 (méd= 0.713) NMI= 0.696     14.2ms (moy.)
+DynMSC                   K_méd=15*  ARI= 0.485±0.089 (méd= 0.452) NMI= 0.744      1.1ms (moy.)
+DenMune                  K=5        ARI= 0.425±0.000 (méd= 0.425) NMI= 0.631      0.3ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Zoo (biologie, taxonomie)] : PoWKM-prescribed ARI_moy=0.713 <-- PoWKM gagne
+
+=== Abalone (biologie, Sexe=vérité terrain) — n=600, d=7, K_vrai=3 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=3        ARI= 0.125±0.007 (méd= 0.124) NMI= 0.157      1.5ms (moy.)
+Hiérarchique/Ward        K=3        ARI= 0.139±0.015 (méd= 0.144) NMI= 0.156     41.3ms (moy.)
+BIRCH                    K=3        ARI= 0.137±0.030 (méd= 0.147) NMI= 0.154      0.6ms (moy.)
+Spectral                 K=3        ARI= 0.135±0.020 (méd= 0.132) NMI= 0.157     47.5ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K_méd=2*   ARI= 0.056±0.029 (méd= 0.047) NMI= 0.076      1.2ms (moy.)
+HDBSCAN                  K_méd=2*   ARI= 0.052±0.041 (méd= 0.040) NMI= 0.075      7.8ms (moy.)
+OPTICS                   K_méd=2*   ARI= 0.057±0.029 (méd= 0.047) NMI= 0.076      7.7ms (moy.)
+Mean-Shift               K_méd=4*   ARI= 0.073±0.058 (méd= 0.063) NMI= 0.117     44.9ms (moy.)
+PoWKM-prescribed         K_méd=6*   ARI= 0.098±0.039 (méd= 0.081) NMI= 0.143    978.7ms (moy.)
+DynMSC                   K=2        ARI= 0.157±0.055 (méd= 0.170) NMI= 0.149     19.2ms (moy.)
+DenMune                  K_méd=2*   ARI= 0.014±0.024 (méd= 0.003) NMI= 0.029      9.6ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Abalone (biologie, Sexe=vérité terrain)] : DynMSC ARI_moy=0.157
+
+### Jeux physique/médecine ###
+
+=== Glass Identification (criminalistique) — n=214, d=9, K_vrai=6 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=6        ARI= 0.158±0.009 (méd= 0.155) NMI= 0.302      0.6ms (moy.)
+Hiérarchique/Ward        K=6        ARI= 0.135±0.000 (méd= 0.135) NMI= 0.295      1.9ms (moy.)
+BIRCH                    K=6        ARI= 0.162±0.000 (méd= 0.162) NMI= 0.296      0.5ms (moy.)
+Spectral                 K=6        ARI= 0.164±0.000 (méd= 0.165) NMI= 0.342     50.8ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=5        ARI= 0.163±0.000 (méd= 0.163) NMI= 0.317      0.2ms (moy.)
+HDBSCAN                  K=3        ARI= 0.220±0.000 (méd= 0.220) NMI= 0.344      1.0ms (moy.)
+OPTICS                   K=5        ARI= 0.147±0.000 (méd= 0.147) NMI= 0.286      0.9ms (moy.)
+Mean-Shift               K=22       ARI= 0.273±0.000 (méd= 0.273) NMI= 0.472      1.6ms (moy.)
+PoWKM-prescribed         K=8        ARI= 0.167±0.002 (méd= 0.168) NMI= 0.318     77.3ms (moy.)
+DynMSC                   K_méd=3*   ARI= 0.129±0.090 (méd= 0.175) NMI= 0.239      3.2ms (moy.)
+DenMune                  K=4        ARI= 0.263±0.001 (méd= 0.263) NMI= 0.406      1.2ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Glass Identification (criminalistique)] : Mean-Shift ARI_moy=0.273
+
+=== Heart Disease Cleveland (médecine) — n=297, d=13, K_vrai=5 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=5        ARI= 0.154±0.010 (méd= 0.154) NMI= 0.212      1.5ms (moy.)
+Hiérarchique/Ward        K=5        ARI= 0.051±0.000 (méd= 0.051) NMI= 0.150      5.7ms (moy.)
+BIRCH                    K=5        ARI= 0.149±0.000 (méd= 0.149) NMI= 0.208      4.9ms (moy.)
+Spectral                 K=5        ARI= 0.084±0.005 (méd= 0.082) NMI= 0.157     37.1ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=1        ARI= 0.071±0.000 (méd= 0.071) NMI= 0.027      0.5ms (moy.)
+HDBSCAN                  K=3        ARI= 0.017±0.000 (méd= 0.017) NMI= 0.150      2.2ms (moy.)
+OPTICS                   K=1        ARI= 0.071±0.000 (méd= 0.071) NMI= 0.027      1.9ms (moy.)
+Mean-Shift               K=1        ARI= 0.000±0.000 (méd= 0.000) NMI= 0.000      6.6ms (moy.)
+PoWKM-prescribed         K=2        ARI= 0.381±0.000 (méd= 0.381) NMI= 0.286    168.6ms (moy.)
+DynMSC                   K=2        ARI= 0.238±0.062 (méd= 0.232) NMI= 0.235      5.5ms (moy.)
+DenMune                  K=2        ARI= 0.023±0.000 (méd= 0.023) NMI= 0.029      2.5ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Heart Disease Cleveland (médecine)] : PoWKM-prescribed ARI_moy=0.381 <-- PoWKM gagne
+
+### Jeux médicaux n/d faible (régime cible du rétrécissement) ###
+
+=== Arrhythmia (médecine, ECG) — n=452, d=274, K_vrai=13 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=13       ARI= 0.095±0.030 (méd= 0.100) NMI= 0.218    173.6ms (moy.)
+Hiérarchique/Ward        K=13       ARI= 0.067±0.000 (méd= 0.067) NMI= 0.185     31.5ms (moy.)
+BIRCH                    K=13       ARI= 0.075±0.000 (méd= 0.075) NMI= 0.192     42.9ms (moy.)
+Spectral                 K=13       ARI= 0.055±0.004 (méd= 0.054) NMI= 0.114    472.0ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=1        ARI= 0.116±0.000 (méd= 0.116) NMI= 0.082     31.4ms (moy.)
+HDBSCAN                  K=0        ARI= 0.000±0.000 (méd= 0.000) NMI= 0.000     50.4ms (moy.)
+OPTICS                   K=1        ARI= 0.116±0.000 (méd= 0.116) NMI= 0.082     46.2ms (moy.)
+Mean-Shift               K=102      ARI= 0.192±0.000 (méd= 0.192) NMI= 0.357    145.6ms (moy.)
+PoWKM-prescribed         K=1        ARI= 0.000±0.000 (méd= 0.000) NMI= 0.000      8.8ms (moy.)
+DynMSC                   K_méd=3*   ARI= 0.010±0.010 (méd= 0.007) NMI= 0.036    570.6ms (moy.)
+DenMune                  K=11       ARI=-0.033±0.001 (méd=-0.033) NMI= 0.125     35.5ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Arrhythmia (médecine, ECG)] : Mean-Shift ARI_moy=0.192
+
+=== Breast Tissue (médecine, impédance électrique) — n=106, d=9, K_vrai=6 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=6        ARI= 0.275±0.016 (méd= 0.270) NMI= 0.521      0.3ms (moy.)
+Hiérarchique/Ward        K=6        ARI= 0.314±0.000 (méd= 0.314) NMI= 0.520      0.3ms (moy.)
+BIRCH                    K=6        ARI= 0.222±0.000 (méd= 0.222) NMI= 0.509      0.1ms (moy.)
+Spectral                 K=6        ARI= 0.303±0.012 (méd= 0.311) NMI= 0.508      4.7ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=2        ARI= 0.194±0.000 (méd= 0.194) NMI= 0.363      0.1ms (moy.)
+HDBSCAN                  K=2        ARI= 0.171±0.000 (méd= 0.171) NMI= 0.344      0.4ms (moy.)
+OPTICS                   K=2        ARI= 0.194±0.000 (méd= 0.194) NMI= 0.360      0.3ms (moy.)
+Mean-Shift               K=7        ARI= 0.165±0.000 (méd= 0.165) NMI= 0.425      0.4ms (moy.)
+PoWKM-prescribed         K=2        ARI= 0.188±0.000 (méd= 0.188) NMI= 0.388     18.8ms (moy.)
+DynMSC                   K_méd=2*   ARI= 0.096±0.097 (méd= 0.093) NMI= 0.206      0.9ms (moy.)
+DenMune                  K=2        ARI= 0.225±0.000 (méd= 0.225) NMI= 0.461      0.3ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Breast Tissue (médecine, impédance électrique)] : DenMune ARI_moy=0.225
+
+=== Dermatology (médecine, dermatologie) — n=358, d=34, K_vrai=6 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=6        ARI= 0.719±0.056 (méd= 0.702) NMI= 0.865      3.6ms (moy.)
+Hiérarchique/Ward        K=6        ARI= 0.711±0.000 (méd= 0.711) NMI= 0.869      9.6ms (moy.)
+BIRCH                    K=6        ARI= 0.705±0.000 (méd= 0.705) NMI= 0.860      9.4ms (moy.)
+Spectral                 K=6        ARI= 0.700±0.001 (méd= 0.699) NMI= 0.843     41.3ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=5        ARI= 0.401±0.000 (méd= 0.401) NMI= 0.597      1.9ms (moy.)
+HDBSCAN                  K=4        ARI= 0.465±0.000 (méd= 0.465) NMI= 0.661      4.9ms (moy.)
+OPTICS                   K=5        ARI= 0.405±0.000 (méd= 0.405) NMI= 0.593      4.2ms (moy.)
+Mean-Shift               K=3        ARI= 0.058±0.000 (méd= 0.058) NMI= 0.229     19.7ms (moy.)
+PoWKM-prescribed         K=3        ARI= 0.540±0.000 (méd= 0.540) NMI= 0.715     94.2ms (moy.)
+DynMSC                   K_méd=3*   ARI= 0.381±0.212 (méd= 0.249) NMI= 0.589     18.1ms (moy.)
+DenMune                  K=5        ARI= 0.654±0.001 (méd= 0.653) NMI= 0.736      4.6ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Dermatology (médecine, dermatologie)] : DenMune ARI_moy=0.654
+
+### Jeux nouveaux (n grand + classes équilibrées ; déséquilibre extrême) ###
+
+=== Image Segmentation (vision, 7 classes équilibrées) — n=2310, d=19, K_vrai=7 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=7        ARI= 0.463±0.005 (méd= 0.460) NMI= 0.588     26.5ms (moy.)
+Hiérarchique/Ward        K=7        ARI= 0.475±0.000 (méd= 0.475) NMI= 0.626   3146.8ms (moy.)
+BIRCH                    K=7        ARI= 0.475±0.000 (méd= 0.475) NMI= 0.616     62.9ms (moy.)
+Spectral                 K=7        ARI= 0.000±0.000 (méd= 0.000) NMI= 0.015  11612.6ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=41       ARI= 0.244±0.000 (méd= 0.244) NMI= 0.553     40.1ms (moy.)
+HDBSCAN                  K=33       ARI= 0.443±0.000 (méd= 0.443) NMI= 0.633    160.4ms (moy.)
+OPTICS                   K=41       ARI= 0.238±0.000 (méd= 0.238) NMI= 0.550    143.5ms (moy.)
+Mean-Shift               K=25       ARI= 0.107±0.000 (méd= 0.107) NMI= 0.345    796.4ms (moy.)
+PoWKM-prescribed         K=3        ARI= 0.108±0.000 (méd= 0.108) NMI= 0.293   6756.3ms (moy.)
+DynMSC                   K_méd=4*   ARI= 0.267±0.180 (méd= 0.235) NMI= 0.460    567.0ms (moy.)
+DenMune                  K=32       ARI= 0.301±0.000 (méd= 0.301) NMI= 0.550    208.0ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [Image Segmentation (vision, 7 classes équilibrées)] : HDBSCAN ARI_moy=0.443
+
+=== HCV Data (médecine, stades hépatite C) — n=589, d=12, K_vrai=5 (moyenne/médiane sur 10 runs) ===
+
+--- K connu fourni en entrée (ne concourent pas sur la découverte de K) ---
+K-Means                  K=5        ARI= 0.096±0.028 (méd= 0.083) NMI= 0.208      3.5ms (moy.)
+Hiérarchique/Ward        K=5        ARI= 0.182±0.000 (méd= 0.182) NMI= 0.253     34.3ms (moy.)
+BIRCH                    K=5        ARI= 0.135±0.000 (méd= 0.135) NMI= 0.236     23.7ms (moy.)
+Spectral                 K=5        ARI= 0.232±0.013 (méd= 0.236) NMI= 0.198    476.1ms (moy.)
+--- K découvert automatiquement (hyperparamètres génériques, aucun accès aux labels) ---
+DBSCAN                   K=2        ARI= 0.040±0.000 (méd= 0.040) NMI= 0.145      1.8ms (moy.)
+HDBSCAN                  K=2        ARI= 0.124±0.000 (méd= 0.124) NMI= 0.178      8.5ms (moy.)
+OPTICS                   K=2        ARI= 0.040±0.000 (méd= 0.040) NMI= 0.145      7.5ms (moy.)
+Mean-Shift               K=37       ARI= 0.682±0.000 (méd= 0.682) NMI= 0.514     21.8ms (moy.)
+PoWKM-prescribed         K=2        ARI= 0.541±0.000 (méd= 0.541) NMI= 0.345    702.3ms (moy.)
+DynMSC                   K_méd=3*   ARI= 0.140±0.127 (méd= 0.092) NMI= 0.156     24.2ms (moy.)
+DenMune                  K=7        ARI= 0.103±0.001 (méd= 0.103) NMI= 0.205     10.1ms (moy.)
+  => MEILLEUR (K découvert, ARI moyen sur 10 runs) [HCV Data (médecine, stades hépatite C)] : Mean-Shift ARI_moy=0.682
+
+### Classement moyen --- algorithmes à K découvert automatiquement ###
+
+Algorithme             ARI moy.   NMI moy.   Temps moy. |K_trouvé-K_vrai|    Victoires
+PoWKM-prescribed          0.311      0.360      616.2ms           3.89         7/18
+DynMSC                    0.245      0.323       73.3ms           4.00         3/18
+DenMune                   0.215      0.298       17.2ms           3.78         3/18
+DBSCAN                    0.197      0.271        4.8ms           4.56         0/18
+OPTICS                    0.195      0.269       13.5ms           4.56         0/18
+Mean-Shift                0.185      0.264       63.7ms          12.61         4/18
+HDBSCAN                   0.175      0.275       15.0ms           4.00         1/18
+
+(ARI moyen = moyenne, sur tous les jeux, de l'ARI moyen par jeu sur 10 runs ;
+« victoires » = nombre de jeux où l'algorithme obtient le meilleur ARI moyen
+parmi les méthodes à K découvert automatiquement.)
+
+### Rang par jeu (1 = meilleur ARI moyen), algorithmes à K découvert ###
+
+Jeu                                                  DBSCAN           HDBSCAN            OPTICS        Mean-Shift  PoWKM-prescribed            DynMSC           DenMune
+Iris                                                    5.0               3.0               6.0               1.5               7.0               1.5               4.0
+Wine                                                    3.0               6.0               4.0               7.0               1.0               5.0               2.0
+Seeds (blé)                                             6.0               7.0               5.0               3.0               4.0               2.0               1.0
+Breast Cancer                                           5.0               6.0               4.0               3.0               2.0               1.0               7.0
+Balance Scale (psychologie cognitive)                   3.0               5.0               4.0               7.0               1.0               2.0               6.0
+German Credit (finance)                                 2.0               6.0               3.0               5.0               1.0               7.0               4.0
+Sonar (défense/mines vs. roches)                        4.0               7.0               3.0               5.0               2.0               1.0               6.0
+Ecoli (biologie, localisation protéine)                 2.0               7.0               4.0               3.0               1.0               6.0               5.0
+Yeast (biologie, localisation subcellulaire)                3.0               6.0               4.0               5.0               1.0               2.0               7.0
+Zoo (biologie, taxonomie)                               5.0               4.0               6.0               7.0               1.0               2.0               3.0
+Abalone (biologie, Sexe=vérité terrain)                 5.0               6.0               4.0               3.0               2.0               1.0               7.0
+Glass Identification (criminalistique)                  5.0               3.0               6.0               1.0               4.0               7.0               2.0
+Heart Disease Cleveland (médecine)                      3.5               6.0               3.5               7.0               1.0               2.0               5.0
+Arrhythmia (médecine, ECG)                              2.5               5.5               2.5               1.0               5.5               4.0               7.0
+Breast Tissue (médecine, impédance électrique)                3.0               5.0               2.0               6.0               4.0               7.0               1.0
+Dermatology (médecine, dermatologie)                    5.0               3.0               4.0               7.0               2.0               6.0               1.0
+Image Segmentation (vision, 7 classes équilibrées)                4.0               1.0               5.0               7.0               6.0               3.0               2.0
+HCV Data (médecine, stades hépatite C)                  6.5               4.0               6.5               1.0               2.0               3.0               5.0
+
+### Rang moyen inter-jeux (plus petit = meilleur) ###
+
+PoWKM-prescribed     rang moyen = 2.639
+DynMSC               rang moyen = 3.472
+DBSCAN               rang moyen = 4.028
+DenMune              rang moyen = 4.167
+OPTICS               rang moyen = 4.250
+Mean-Shift           rang moyen = 4.417
+HDBSCAN              rang moyen = 5.028
+
+### Test de Friedman (correction Iman-Davenport) ###
+
+H0 : tous les algorithmes sont équivalents (même rang moyen espéré).
+chi²_F = 13.3155   F_F = 2.3907   ddl=(6,102)   p = 0.03342
+=> p < 0.05 : H0 rejetée, différences significatives entre au moins deux algorithmes.
+
+### Post-hoc de Nemenyi (alpha=0.05) ###
+
+Différence critique (CD) = 2.1230 (k=7 algorithmes, n=18 jeux)
+Paires dont |rang_moyen_i - rang_moyen_j| > CD (différence significative) :
+
+  HDBSCAN vs PoWKM-prescribed : |diff rang| = 2.389  (significatif)
+
+Rappel méthodologique : DBSCAN/HDBSCAN/OPTICS/Mean-Shift/PoWKM/PoWKM-prescribed/DynMSC/DenMune
+découvrent K eux-mêmes (hyperparamètres génériques, aucun accès aux labels) ;
+K-Means/Hiérarchique/BIRCH/Spectral reçoivent K_vrai en entrée (ne peuvent pas
+fonctionner sans). Ce ne sont pas deux catégories à comparer terme à terme sur
+l'ARI seul — la comparaison honnête porte sur K trouvé pour la première catégorie,
+et sur ARI/NMI à K fixé pour la seconde. PoWKM libre reste désactivé partout dans
+ce fichier. Chaque couple (algorithme, jeu) est répété 10 fois (seed variable,
+y compris le sous-échantillon lui-même pour Abalone/Yeast/German Credit) --- ARI
+moyen ± écart-type et médiane reportés ; rang par jeu, rang moyen inter-jeux, test
+de Friedman (Iman-Davenport) et post-hoc de Nemenyi en fin de sortie (protocole
+Demšar, JMLR 2006). Wholesale et Ionosphere restent chargés mais désactivés des
+groupes actifs (cf. doc du module en tête de fichier).
